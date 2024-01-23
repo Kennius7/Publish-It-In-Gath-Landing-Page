@@ -74,15 +74,16 @@ const Home = () => {
 
     return (
         <>
-            <div className="w-full relative sm:h-[600px] xs:h-[500px] h-[400px]">
+            <div className="w-full relative md:h-[500px] sm:h-[600px] xs:h-[500px] h-[400px]">
                 <div className="w-full h-full">
                     <img src={backgroundPics} className="w-full h-full object-cover opacity-80" />
                 </div>
 
-                <div className="absolute z-1 top-0 left-0 flex flex-col justify-start items-start w-full h-full">
+                <div className="absolute z-1 top-0 left-0 flex flex-col justify-between items-start 
+                    w-full h-full pb-[20px]">
 
                     <div className="w-full flex justify-between items-center md:mb-[60px] sm:mb-[30px] 
-                        xs:mb-[40px] mb-[20px] sm:p-4 p-1 bg-[#260c65]">
+                        xs:mb-[40px] mb-[20px] sm:pb-4 p-1 gradient-background sm:h-[80px] h-[50px]">
                         <div className="flex justify-start items-center">
                             <img 
                                 src={logo}
@@ -91,64 +92,68 @@ const Home = () => {
                                     xs:w-[30px] xs:h-[30px] w-[24px] h-[24px]" 
                             />
                             <div className="font-poppins font-semibold text-start md:text-[28px] sm:text-[20px] 
-                                xs:text-[16px] text-[13px] sm:pl-[10px] pl-[6px] text-[#e4797f]">
-                                Publish <span className="text-[#b74976]">It In</span> Gath
+                                xs:text-[16px] text-[13px] sm:pl-[10px] pl-[6px] text-[#f19ca1]">
+                                Publish <span className="text-[#c97598]">It In</span> Gath
                             </div>
                         </div>
                         <div>
                             <div className="font-sans text-end sm:text-[16px] xs:text-[13px] text-[10px] 
                                 text-[#f0dcd2] italic">
                                 Our next service is on Sunday <br className={`md:hidden block`}/> 
-                                the 31th of January 2024
+                                the 28th of January 2024
                             </div>
                         </div>
                     </div>
 
-                    <div className="w-full flex flex-col justify-center items-center">
+                    <div className="w-full flex flex-col justify-between items-center h-[80%]">
 
                         <div className="w-full flex flex-col justify-center items-center 
-                            md:mb-[4%] sm:mb-[3%] xs:mb-[4%] mb-[3%]">
+                            md:mb-[1%] sm:mb-[3%] xs:mb-[4%] mb-[3%] h-[60%]">
 
                             <div className="font-poppins font-bold text-center md:text-[39px] 
                                 sm:text-[32px] xs:text-[24px] text-[20px] md:max-w-[800px] sm:max-w-[600px] 
-                                xs:max-w-[420px] max-w-[320px] md:tracking-[3px] tracking-normal md:mb-[1%] 
+                                xs:max-w-[420px] max-w-[320px] md:mb-0 text-[#2e150f]
                                 sm:mb-[1%] xs:mb-[3%] mb-[2%] xs:leading-normal leading-[27px]">
-                                Welcome to Our Church
+                                Welcome to Publish It In Gath
                             </div>
+
                             <div className="flex flex-wrap justify-center items-center font-poppins font-semibold 
                                 text-primary md:mb-[2%] sm:mb-[8%] xs:mb-[14%] mb-[7%] xs:w-full w-[90%]">
 
-                                <div className="text-center sm:text-[20px] xs:text-[16px] text-[16px] 
+                                <div className="text-center sm:text-[18px] xs:text-[16px] text-[16px] 
                                     mr-[10px] xs:tracking-normal tracking-tighter">
-                                    Seize this opportunity with a whooping
+                                    An online publicity media and mobilization board for
                                 </div>
-                                <div className="font-poppins font-semibold text-blue-700 
-                                    sm:text-[28px] xs:text-[20px] text-[23px]">
-                                    90%
-                                </div>
-                                &nbsp;
+
                                 <div className="text-center md:w-[250px] sm:w-[230px] xs:w-[180px] w-[180px] 
                                     md:text-[22px] sm:text-[20px] xs:text-[16px] text-[16px] bg-red-600 
-                                    text-green-800 rounded-[8px] px-2 py-1 bounce-element xs:ml-[6px] ml-[3px]">
-                                    Christmas discount
+                                    text-white rounded-[8px] px-2 py-1 bounce-element xs:ml-[6px] ml-[3px]">
+                                    Kingdom Expansion
                                 </div> 
                                 <div className="text-center sm:text-[20px] xs:text-[16px] text-[17px] ml-[10px]">
-                                    on all courses!
+                                    In Lagos!
                                 </div>
 
                             </div>
 
-                            <div className="flex justify-center items-center bg-blue-100 rounded-[10px] 
-                                border-[1px] border-yellow-500 md:w-[20%] sm:w-[30%] xs:w-[35%] w-[45%]">
-                                <div className="font-sans font-bold text-slate-800 sm:text-[26px] 
-                                    xs:text-[20px] text-[16px] my-[3px]">
-                                    Offer Lasts Till
+                            {/* <div className="flex justify-center items-center font-poppins font-semibold">
+                                <div className="font-sans text-center italic text-[19px] text-black">
+                                    Scroll below to contact us
                                 </div>
-                            </div>
+                            </div> */}
 
                         </div>
 
-                        <div className="flex justify-center items-center w-[100%]">
+                        <div className="flex flex-col justify-center items-center w-[100%]">
+
+                            <div className="flex justify-center items-center bg-blue-100 rounded-[10px] 
+                                border-[1px] border-yellow-500 md:w-[35%] sm:w-[30%] xs:w-[35%] w-[45%] 
+                                my-[15px]">
+                                <div className="font-sans font-bold text-slate-800 sm:text-[26px] 
+                                    xs:text-[20px] text-[16px] my-[5px]">
+                                    Shuttles will take off in the next
+                                </div>
+                            </div>
 
                             <div className="flex justify-around items-center xs:w-[70%] w-[90%]">
 

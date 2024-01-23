@@ -1,7 +1,7 @@
 // import { useContext, useEffect } from "react";
 // import { mainContext } from "../context/mainContext";
-// import { BulletPoints, CallToAction, CourseList, Home, Intro, Requirement } from "./index";
-import Home from "./Home";
+import { Home, Intro, Requirement } from "./index";
+// import Home from "./Home";
 
 
 
@@ -18,9 +18,9 @@ function LandingPage() {
   return (
     <>
         <Home/>
-        {/* <Intro/>
-        <CourseList/>
+        <Intro/>
         <Requirement/>
+        {/* <CourseList/>
         <BulletPoints/>
         <CallToAction/> */}
     </>

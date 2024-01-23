@@ -159,3 +159,7 @@
 }
 
 
+.gradient-background {
+  background: linear-gradient(to bottom, #260c65, rgba(209, 169, 10, 0));
+}
+
