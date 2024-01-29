@@ -9,9 +9,9 @@
 // export { default as nodePics } from "./logos-edits-nodejs.webp";
 // export { default as reactNativePics } from "./logos-edits-react-native.webp";
 // export { default as pythonPics } from "./logos-edits-python.webp";
-export { default as laptop } from "./laptop.png";
-export { default as dataConnect } from "./router.png";
-export { default as power } from "./power.png";
+export { default as ojuelegba } from "./ojuelegba.jpg";
+export { default as worship } from "./worship.jpeg";
+export { default as dropoff } from "./dropoff.jpg";
 export { default as study } from "./study.png";
 
 

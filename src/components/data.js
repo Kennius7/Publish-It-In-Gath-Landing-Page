@@ -1,4 +1,6 @@
-import { laptop, power, dataConnect, study } from "../assets/img";
+import { ojuelegba, dropoff, worship, study } from "../assets/img";
+
+
 
 
 
@@ -19,17 +21,17 @@ import { laptop, power, dataConnect, study } from "../assets/img";
 // ];
 
 const imageDesc = {
-    laptop: "Duo Core Laptop or better",
-    data: "Steady data connection",
-    power: "Steady power supply (If possible)",
-    study: "A dogged willingness to learn",
+    laptop: "First, we would be picking you up for free at Ojuelegba Bus stop. Ensure you are on location on or before 7:30AM as we would be taking off for Church shortly after.\n\nPlease fill your details where applicable so we can identify you and reach out to you for information updates and follow ups.",
+    worship: "Then, you get to enjoy the powerful ministrations of worship, praise, the word of God, and prophetic impartations, all in the presence of God.\n\nPlease open your heart to receive all God has for you and engage the word, and we strongly believe you would come back with a testimony.",
+    dropoff: "Then you would be dropped off at your location, at the end of the service.",
+    study: "Gifts will be given to those who were first timers at end of service.",
 }
 
 export const requirementData = [
-    { id: 0, img: laptop, desc: imageDesc.laptop, },
-    { id: 1, img: dataConnect, desc: imageDesc.data, },
-    { id: 2, img: power, desc: imageDesc.power, },
-    { id: 3, img: study, desc: imageDesc.study, },
+    { id: 0, alt: "Ojuelegba Pics", img: ojuelegba, title: "Ojuelegba Pickup", desc: imageDesc.laptop, },
+    { id: 1, alt: "Worship Pics", img: worship, title: "Worship Experience", desc: imageDesc.worship, },
+    { id: 2, alt: "Drop Off Pics", img: dropoff, title: "Drop Off", desc: imageDesc.dropoff, },
+    { id: 3, alt: "Ojuelegba", img: study, title: "Ojuelegba Pickup", desc: imageDesc.study, },
 ]
 
 // export const reasonWhySlide = [

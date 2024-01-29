@@ -163,3 +163,25 @@
   background: linear-gradient(to bottom, #260c65, rgba(209, 169, 10, 0));
 }
 
+.newline {
+  white-space: pre-line;
+}
+
+.navText1{
+  text-shadow: 0 0 2px rgb(20, 11, 70);
+}
+
+.navText2{
+  text-shadow: 0 0 4px rgb(229, 227, 236);
+}
+
+.navText3{
+  text-shadow: 0 0 2px rgb(194, 34, 22);
+}
+
+
+
+
+
+
+

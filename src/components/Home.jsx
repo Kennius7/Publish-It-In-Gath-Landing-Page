@@ -60,7 +60,7 @@
 
 
 
-import backgroundPics from "../assets/img/BG1.webp";
+import backgroundPics from "../assets/img/BG4.jpg";
 import logo from "../assets/img/Logo.jpg";
 import { useContext } from "react";
 import { mainContext } from "../context/mainContext";
@@ -76,7 +76,7 @@ const Home = () => {
         <>
             <div className="w-full relative md:h-[500px] sm:h-[600px] xs:h-[500px] h-[400px]">
                 <div className="w-full h-full">
-                    <img src={backgroundPics} className="w-full h-full object-cover opacity-80" />
+                    <img src={backgroundPics} className="w-full h-full object-cover opacity-50" />
                 </div>
 
                 <div className="absolute z-1 top-0 left-0 flex flex-col justify-between items-start 
@@ -92,7 +92,7 @@ const Home = () => {
                                     xs:w-[30px] xs:h-[30px] w-[24px] h-[24px]" 
                             />
                             <div className="font-poppins font-semibold text-start md:text-[28px] sm:text-[20px] 
-                                xs:text-[16px] text-[13px] sm:pl-[10px] pl-[6px] text-[#f19ca1]">
+                                xs:text-[16px] text-[13px] sm:pl-[10px] pl-[6px] text-[#f19ca1] navText3">
                                 Publish <span className="text-[#c97598]">It In</span> Gath
                             </div>
                         </div>
@@ -112,7 +112,7 @@ const Home = () => {
 
                             <div className="font-poppins font-bold text-center md:text-[39px] 
                                 sm:text-[32px] xs:text-[24px] text-[20px] md:max-w-[800px] sm:max-w-[600px] 
-                                xs:max-w-[420px] max-w-[320px] md:mb-0 text-[#2e150f]
+                                xs:max-w-[420px] max-w-[320px] md:mb-0 text-[#2e150f] navText2
                                 sm:mb-[1%] xs:mb-[3%] mb-[2%] xs:leading-normal leading-[27px]">
                                 Welcome to Publish It In Gath
                             </div>
@@ -121,16 +121,19 @@ const Home = () => {
                                 text-primary md:mb-[2%] sm:mb-[8%] xs:mb-[14%] mb-[7%] xs:w-full w-[90%]">
 
                                 <div className="text-center sm:text-[18px] xs:text-[16px] text-[16px] 
-                                    mr-[10px] xs:tracking-normal tracking-tighter">
-                                    An online publicity media and mobilization board for
+                                    mr-[7px] xs:tracking-normal tracking-tighter navText2">
+                                    An online publicity media and mobilization platform for
                                 </div>
 
-                                <div className="text-center md:w-[250px] sm:w-[230px] xs:w-[180px] w-[180px] 
-                                    md:text-[22px] sm:text-[20px] xs:text-[16px] text-[16px] bg-red-600 
-                                    text-white rounded-[8px] px-2 py-1 bounce-element xs:ml-[6px] ml-[3px]">
-                                    Kingdom Expansion
+                                <div className="text-center md:w-[350px] sm:w-[230px] xs:w-[180px] w-[180px] 
+                                    md:text-[19px] sm:text-[20px] xs:text-[16px] text-[16px] bg-red-600 
+                                    text-white rounded-[8px] px-2 py-1 xs:ml-[6px] ml-[3px]">
+                                    <span className="text-yellow-300/70 navText1">
+                                        Gospel Pillars Ministries
+                                    </span> Expansion
                                 </div> 
-                                <div className="text-center sm:text-[20px] xs:text-[16px] text-[17px] ml-[10px]">
+                                <div className="text-center sm:text-[20px] xs:text-[16px] text-[17px] 
+                                    ml-[10px] navText2">
                                     In Lagos!
                                 </div>
 
@@ -147,11 +150,11 @@ const Home = () => {
                         <div className="flex flex-col justify-center items-center w-[100%]">
 
                             <div className="flex justify-center items-center bg-blue-100 rounded-[10px] 
-                                border-[1px] border-yellow-500 md:w-[35%] sm:w-[30%] xs:w-[35%] w-[45%] 
+                                border-[1px] border-yellow-500 md:w-[30%] sm:w-[30%] xs:w-[35%] w-[45%] 
                                 my-[15px]">
                                 <div className="font-sans font-bold text-slate-800 sm:text-[26px] 
-                                    xs:text-[20px] text-[16px] my-[5px]">
-                                    Shuttles will take off in the next
+                                    xs:text-[20px] text-[16px] my-[5px] tracking-widest">
+                                    NEXT TAKE OFF IN
                                 </div>
                             </div>
 

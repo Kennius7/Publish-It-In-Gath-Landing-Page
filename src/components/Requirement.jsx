@@ -7,11 +7,14 @@ function Requirement() {
     <>
         <div className="flex flex-col md:justify-center justify-start items-center w-full 
           md:h-[600px] sm:h-[600px] xs:h-[650px] h-[870px]">
-            <div className="flex justify-center items-center w-full md:mt-[10px] sm:mt-[30px] 
+            <div className="flex flex-col justify-center items-center w-full md:mt-[10px] sm:mt-[30px] 
               xs:mt-[40px] mt-[30px] xs:mb-[40px] mb-[20px]">
               <div className="text-center font-semibold text-slate-700 sm:text-[30px] 
                 xs:text-[23px] text-[18px] sm:w-full xs:w-[80%] w-[90%]">
-                  Requirements To Fully Participate In Our Online Classes
+                  What your experience should be like on Sunday...
+              </div>
+              <div className="text-[20px] text-[#181544] font-sans italic">
+                (Pick up time is 7:30AM latest. Miss it, miss out!)
               </div>
             </div>
 
@@ -19,20 +22,27 @@ function Requirement() {
               {
                 requirementData.map((data)=> (
                   <li key={data.id} 
-                    className={`flex justify-center xs:items-center items-end xs:flex-row xs:flex-wrap 
+                    className={`flex justify-center xs:items-center items-center xs:flex-row xs:flex-wrap 
                       flex-nowrap ${data.id === 1 || data.id === 3 ? "flex-row-reverse" : "flex-row"}
                       sm:w-[45%] xs:w-[48%] w-[95%] md:h-[200px] sm:h-[170px] xs:h-[200px] h-[160px] 
                       xs:mb-[30px] mb-[20px]`}>
 
                     <img 
                       src={data.img} 
-                      alt="laptop" 
-                      className="md:w-[200px] sm:w-[170px] xs:w-[120px] w-[130px] sm:h-[95%] 
-                      xs:h-[60%] h-[80%]" />
+                      alt={data.alt}
+                      className="md:w-[250px] sm:w-[170px] xs:w-[120px] w-[130px] md:h-[97%] sm:h-[95%] 
+                      xs:h-[60%] h-[80%] overflow-hidden object-cover box-shadow rounded-[7px]" />
 
-                    <div className={`sm:text-[16px] xs:text-[14px] text-[15px] w-[50%] md:ml-0 
-                      md:mr-0 xs:mb-0 mb-[15px] ${data.id === 1 || data.id === 3 ? "mr-[5px]" : "ml-[5px]"}`}>
-                      {data.desc}
+                    <div className="flex flex-col justify-start items-center md:w-[50%] w-[60%] ml-[30px] 
+                      h-[98%]">
+                      <div className="font-semibold text-white text-start w-full bg-[#f19ca1] 
+                        p-1 rounded-[5px]">
+                        {data.id + 1}.&nbsp;&nbsp;{data.title}
+                      </div>
+                      <div className={`font-sans italic md:text-[15px] sm:text-[16px] xs:text-[14px] text-[15px] 
+                        xs:mb-0 mb-[15px] newline leading-[20px]`}>
+                        {data.desc}
+                      </div>
                     </div>
 
                   </li>

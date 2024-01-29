@@ -23,7 +23,7 @@ function Intro () {
                             />
                         </div>
                         <div className="flex justify-center items-center sm:w-[40%] xs:w-[75%] w-[88%]">
-                            <div className="font-poppins font-semibold sm:text-start text-center 
+                            <div className="font-poppins font-semibold sm:text-start text-center text-slate-700
                                 md:text-[28px] sm:text-[20px] xs:text-[16px] text-[15px] sm:mt-0 
                                 xs:mt-[20px] mt-[40px]">
                                 Join us for a time of worship, word ministration, and prophetic impartation 

@@ -7,11 +7,8 @@ import ScrollToTop from "./ScrollToTop";
 
 
 function App() {
-  const timeVariable1 = new Date("01/31/2024 09:00:00");
-  const timeVariable2 = new Date;
-  const timeTodayCounted = timeVariable2.valueOf();
-  const futureCounted = timeVariable1.valueOf();
-  const timeRemaining = (futureCounted - timeTodayCounted)/1000;
+  
+  // console.log(futureCounted - timeTodayCounted);
   // const [examTimeLimit, setExamTimeLimit] = useState(timeRemaining);
   
   const [days, setDays] = useState(0);
@@ -25,6 +22,13 @@ function App() {
 
 
   useEffect(() => {
+    const timeVariable1 = new Date("01/28/2024 07:00:00");
+    const timeVariable2 = new Date;
+    const timeTodayCounted = timeVariable2.valueOf();
+    const futureCounted = timeVariable1.valueOf();
+    const sevenDaysCount = 604821410;
+    let timeRemaining = (futureCounted - timeTodayCounted)/1000;
+
     const setExamTimerInterval = setInterval(() => {
         // setExamTimeLimit(() => examTimeLimit - 1);
         setSeconds(()=>Math.floor(timeRemaining % 86400 % 3600 % 60 ));
@@ -34,9 +38,9 @@ function App() {
     }, 1000);
 
 
-    // if (timeRemaining === 0) {
-    //     setExamTimeLimit(0);
-    // }
+    if (timeRemaining === 0) {
+        timeRemaining = (timeTodayCounted + sevenDaysCount) / 1000;
+    }
 
     return () => {
         setTimeout(() => {
@@ -44,7 +48,7 @@ function App() {
         }, 500);
     }
 
-  }, [timeRemaining])
+  })
 
   return (
     <>
