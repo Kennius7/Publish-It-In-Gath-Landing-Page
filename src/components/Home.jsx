@@ -64,12 +64,15 @@ import backgroundPics from "../assets/img/BG4.jpg";
 import logo from "../assets/img/Logo.jpg";
 import { useContext } from "react";
 import { mainContext } from "../context/mainContext";
+import { getFullDayFunction, getFullMonthFunction, getYear, getdateNumber } from "./data";
 // import RegisterButton from "./RegisterButton";
 
 
 
 const Home = () => {
-    const { days, hours, minutes, seconds } = useContext(mainContext);
+    const { days, hours, minutes, seconds, futureDate } = useContext(mainContext);
+    // console.log(new Date("02/09/2024 07:30:00").toUTCString());
+    // const dayString = new Date("02/03/2024 07:30:00").getDay();
     // 🚀🚀🚀
 
     return (
@@ -98,9 +101,10 @@ const Home = () => {
                         </div>
                         <div>
                             <div className="font-sans text-end sm:text-[16px] xs:text-[13px] text-[10px] 
-                                text-[#f0dcd2] italic">
-                                Our next service is on Sunday <br className={`md:hidden block`}/> 
-                                the 28th of January 2024
+                                text-[#f0dcd2] italic pr-[4px]">
+                                Our next service is on {getFullDayFunction(futureDate)},&nbsp;
+                                <br className={`md:hidden block`}/>
+                                the {getdateNumber(futureDate)}th of {getFullMonthFunction(futureDate)}, {getYear(futureDate)}
                             </div>
                         </div>
                     </div>
