@@ -3,6 +3,7 @@ import backgroundPics from "../assets/img/BG4.jpg";
 // import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { password } from "../data";
+const PIIG_GroupLink = "https://chat.whatsapp.com/CJWMYLMBQkBF8WvtBrOYbr";
 
 
 
@@ -23,6 +24,7 @@ function CallToAction() {
         // adminPassword === passwordAdmin 
         //     ? Navigate("/dashboard") 
         //     : console.log(adminPassword);
+        window.open(PIIG_GroupLink, '_blank', 'noreferrer');
     }
 
 
@@ -32,7 +34,7 @@ function CallToAction() {
     <>
         <div className="w-full relative bg-slate-200 md:h-[700px] sm:h-[600px] xs:h-[500px] h-[500px]">
             <div className="w-full h-full">
-                <img src={backgroundPics} className="w-full h-full object-cover object-bottom opacity-20" />
+                <img src={backgroundPics} className="w-full h-full object-cover object-bottom opacity-40" />
             </div>
 
             <div className="flex flex-col justify-between items-center absolute z-1 top-[10%] left-0 
@@ -45,50 +47,41 @@ function CallToAction() {
                 </div>
 
                 <div className="flex flex-col justify-center items-center w-full md:h-[200px] sm:h-[150px] 
-                    bg-blue-100/20 h-[200px]">
-                    {/* <div className="font-poppins font-semibold text-center md:text-[36px] 
+                    h-[200px]">
+
+                    <div className="font-poppins font-semibold text-center md:text-[30px] 
                         sm:text-[30px] xs:text-[24px] text-[20px] md:max-w-[800px] sm:max-w-[700px] 
-                        xs:max-w-[500px] max-w-[320px] xs:mb-0 mb-[10px]">
-                        Enroll Now for a Coding Transformation!
+                        xs:max-w-[500px] max-w-[320px] xs:mb-4 mb-[10px]">
+                        Book your seats
                     </div>
-                    <div className="font-poppins text-center font-semibold text-primary 
-                        md:text-[22px] sm:text-[20px] xs:text-[15px] text-[13px] xs:w-full w-[90%] mb-[30px]">
-                        Seize this opportunity with a whooping&nbsp;
-                        <span className="font-poppins font-semibold text-blue-700 sm:text-[24px] 
-                            xs:text-[18px] text-[16px]">
-                            90%
-                        </span> discount on all courses this Christmas period!
-                    </div> */}
-                    {/* <div className="flex justify-center items-center w-full">
-                        <RegisterButton/>
-                    </div> */}
+
                     <div className="flex flex-col justify-between items-center w-[450px] h-[400px]">
                         <div className="w-full h-[45px] mb-[15px]">
                             <input 
                                 className="w-full h-full rounded-[10px] pl-[8px] outline-none 
-                                placeholder:font-sans placeholder:italic border-[1px] border-black"
+                                placeholder:font-sans placeholder:italic placeholder:text-slate-900"
                                 placeholder="Full Name"
                                 required />
                         </div>
                         <div className="w-full h-[45px] mb-[15px]">
                             <input 
                                 className="w-full h-full rounded-[10px] pl-[8px] outline-none 
-                                placeholder:font-sans placeholder:italic" 
+                                placeholder:font-sans placeholder:italic placeholder:text-slate-900" 
                                 placeholder="Home Address"
                                 required />
                         </div>
                         <div className="w-full h-[45px] mb-[15px]">
                             <input 
                                 className="w-full h-full rounded-[10px] pl-[8px] outline-none 
-                                placeholder:font-sans placeholder:italic" 
-                                placeholder="Whatsapp Number"
+                                placeholder:font-sans placeholder:italic placeholder:text-slate-900" 
+                                placeholder="WhatsApp Number"
                                 required />
                         </div>
                         <button 
                             onClick={handleSubmit} 
-                            className="font-sans w-[70%] h-[45px] rounded-[10px] text-slate-900
-                            bg-[#c97598] text-[18px] focus:bg-slate-500 focus:text-white">
-                            Book your seat
+                            className="font-sans font-semibold tracking-widest w-[50%] h-[45px] rounded-[10px] 
+                            text-slate-100 bg-[#c97598] text-[22px] focus:bg-slate-500 focus:text-white mt-[20px]">
+                            Book
                         </button>
                     </div>
                 </div>
