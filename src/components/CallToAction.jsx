@@ -1,6 +1,6 @@
 // import RegisterButton from "./RegisterButton";
-import backgroundPics from "../assets/img/BG1.webp";
-import { useState } from "react";
+import backgroundPics from "../assets/img/BG4.jpg";
+// import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { password } from "../data";
 
@@ -9,22 +9,20 @@ import { useState } from "react";
 function CallToAction() {
     // const Navigate = useNavigate();
     // const passwordAdmin = password;
-    const [clicked, setClicked] = useState(false);
-    const [adminPassword, setAdminPassword] = useState("");
+    // const [clicked, setClicked] = useState(false);
+    // const [adminPassword, setAdminPassword] = useState("");
 
-    const handleChange = (e) => {
-        setAdminPassword(() => e.target.value);
-    }
-    const handleAdminClick = () => {
-        setClicked(!clicked);
-    }
+    // const handleChange = (e) => {
+    //     setAdminPassword(() => e.target.value);
+    // }
+    // const handleAdminClick = () => {
+    //     setClicked(!clicked);
+    // }
 
     const handleSubmit = () => {
         // adminPassword === passwordAdmin 
         //     ? Navigate("/dashboard") 
         //     : console.log(adminPassword);
-        
-        setClicked(!clicked);
     }
 
 
@@ -48,7 +46,7 @@ function CallToAction() {
 
                 <div className="flex flex-col justify-center items-center w-full md:h-[200px] sm:h-[150px] 
                     bg-blue-100/20 h-[200px]">
-                    <div className="font-poppins font-semibold text-center md:text-[36px] 
+                    {/* <div className="font-poppins font-semibold text-center md:text-[36px] 
                         sm:text-[30px] xs:text-[24px] text-[20px] md:max-w-[800px] sm:max-w-[700px] 
                         xs:max-w-[500px] max-w-[320px] xs:mb-0 mb-[10px]">
                         Enroll Now for a Coding Transformation!
@@ -60,10 +58,39 @@ function CallToAction() {
                             xs:text-[18px] text-[16px]">
                             90%
                         </span> discount on all courses this Christmas period!
-                    </div>
+                    </div> */}
                     {/* <div className="flex justify-center items-center w-full">
                         <RegisterButton/>
                     </div> */}
+                    <div className="flex flex-col justify-between items-center w-[450px] h-[400px]">
+                        <div className="w-full h-[45px] mb-[15px]">
+                            <input 
+                                className="w-full h-full rounded-[10px] pl-[8px] outline-none 
+                                placeholder:font-sans placeholder:italic border-[1px] border-black"
+                                placeholder="Full Name"
+                                required />
+                        </div>
+                        <div className="w-full h-[45px] mb-[15px]">
+                            <input 
+                                className="w-full h-full rounded-[10px] pl-[8px] outline-none 
+                                placeholder:font-sans placeholder:italic" 
+                                placeholder="Home Address"
+                                required />
+                        </div>
+                        <div className="w-full h-[45px] mb-[15px]">
+                            <input 
+                                className="w-full h-full rounded-[10px] pl-[8px] outline-none 
+                                placeholder:font-sans placeholder:italic" 
+                                placeholder="Whatsapp Number"
+                                required />
+                        </div>
+                        <button 
+                            onClick={handleSubmit} 
+                            className="font-sans w-[70%] h-[45px] rounded-[10px] text-slate-900
+                            bg-[#c97598] text-[18px] focus:bg-slate-500 focus:text-white">
+                            Book your seat
+                        </button>
+                    </div>
                 </div>
 
                 <div className="font-sans font-semibold text-center italic md:text-[20px] 
@@ -72,32 +99,6 @@ function CallToAction() {
                     Don&apos;t miss out on the opportunity to shape your destiny in the digital realm. 
                     Join our online programming classes and become a master of code!
                 </div>
-            </div>
-
-            <div className="absolute z-2 bottom-1 right-1 cursor-pointer flex flex-col justify-center 
-                items-end opacity-30">
-                <div 
-                    onClick={handleAdminClick} 
-                    className={`${clicked ? "text-slate-300" : "text-slate-50"}`}>
-                    Admin Login
-                </div>
-                <input 
-                    type="password" 
-                    name="password" 
-                    value={adminPassword}
-                    onChange={handleChange}
-                    placeholder="Password"
-                    className={`border-[1px] border-slate-400 w-[150px] h-[20px] placeholder:text-slate-400
-                    placeholder:text-end placeholder:text-[12px] text-[12px]
-                    ${clicked ? "block" : "hidden"}`}>
-                </input>
-                <button 
-                    onClick={handleSubmit}
-                    className={`border-[1px] border-slate-400 text-end text-slate-400 text-[12px] 
-                    w-[150px] h-[20px] 
-                    ${clicked ? "block" : "hidden"}`}>
-                    Submit
-                </button>
             </div>
         </div>
     </>

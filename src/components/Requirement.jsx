@@ -6,7 +6,7 @@ function Requirement() {
   return (
     <>
         <div className="flex flex-col md:justify-center justify-start items-center w-full 
-          md:h-[600px] sm:h-[600px] xs:h-[650px] h-[870px]">
+          md:h-[650px] sm:h-[600px] xs:h-[650px] h-[870px]">
             <div className="flex flex-col justify-center items-center w-full md:mt-[10px] sm:mt-[30px] 
               xs:mt-[40px] mt-[30px] xs:mb-[40px] mb-[20px]">
               <div className="text-center font-semibold text-slate-700 sm:text-[30px] 
@@ -14,7 +14,7 @@ function Requirement() {
                   What your experience should be like on Sunday...
               </div>
               <div className="text-[20px] text-[#181544] font-sans italic">
-                (Pick up time is 7:30AM latest. Miss it, miss out!)
+                (Pick up time is 7:30AM latest. Don&apos;t miss it, or you miss out!)
               </div>
             </div>
 

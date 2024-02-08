@@ -100,8 +100,8 @@ const Home = () => {
                             </div>
                         </div>
                         <div>
-                            <div className="font-sans text-end sm:text-[16px] xs:text-[13px] text-[10px] 
-                                text-[#f0dcd2] italic pr-[4px]">
+                            <div className="font-sans font-semibold text-end sm:text-[16px] xs:text-[13px] 
+                                text-[10px] text-[#f0dcd2] italic pr-[4px]">
                                 Our next service is on {getFullDayFunction(futureDate)},&nbsp;
                                 <br className={`md:hidden block`}/>
                                 the {getdateNumber(futureDate)}th of {getFullMonthFunction(futureDate)}, {getYear(futureDate)}
@@ -142,12 +142,6 @@ const Home = () => {
                                 </div>
 
                             </div>
-
-                            {/* <div className="flex justify-center items-center font-poppins font-semibold">
-                                <div className="font-sans text-center italic text-[19px] text-black">
-                                    Scroll below to contact us
-                                </div>
-                            </div> */}
 
                         </div>
 

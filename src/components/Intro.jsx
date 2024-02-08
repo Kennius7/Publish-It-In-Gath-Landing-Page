@@ -26,16 +26,20 @@ function Intro () {
                             <div className="font-poppins font-semibold sm:text-start text-center text-slate-700
                                 md:text-[28px] sm:text-[20px] xs:text-[16px] text-[15px] sm:mt-0 
                                 xs:mt-[20px] mt-[40px]">
-                                Join us for a time of worship, word ministration, and prophetic impartation 
-                                at the&nbsp;
-                                <span className="text-[#e6bf55]">
+                                Join us for an awesome time of worship, word ministration, and prophetic impartation 
+                                at the <br/>
+                                <span className="text-[#c09e40] navText3">
                                     Ark of Light For All Nations
-                                </span>, Gospel Pillars Ministries, 
-                                11C, Kudirat Abiola way, Alausa, Ikeja, Lagos.
+                                </span>, <br/> Gospel Pillars Ministries, <br/>
+                                <span className="font-sans font-bold text-[24px] italic underline">
+                                    11C, Kudirat Abiola way, Alausa, Ikeja, Lagos.
+                                </span>
                                 <br/> <br className="sm:block xs:hidden block" />
-                                Whether you&apos;re a beginner looking to build a solid foundation or an 
-                                experienced developer aiming to level up your skills, we&apos;ve got the 
-                                perfect courses for you.
+                                <span className="font-sans font-semibold text-[23px] italic">
+                                    Whether you&apos;re a staunch follower of Christ who is looking for a place of worship,
+                                    or you are a newcomer to the Christian faith and you need a guiding hand, we believe you&apos;ve 
+                                    come to the right place.
+                                </span>
                             </div>
                         </div>
 

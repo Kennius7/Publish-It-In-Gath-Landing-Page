@@ -12,6 +12,6 @@
 export { default as ojuelegba } from "./ojuelegba.jpg";
 export { default as worship } from "./worship.jpeg";
 export { default as dropoff } from "./dropoff.jpg";
-export { default as study } from "./study.png";
+export { default as gift } from "./gift.jpg";
 
 
