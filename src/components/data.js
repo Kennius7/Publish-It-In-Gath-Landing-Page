@@ -1,4 +1,5 @@
-import { ojuelegba, dropoff, worship, gift } from "../assets/img";
+import { ojuelegba, dropoff, worship, gift, features01, 
+    features02, features03, features04, features05, features06 } from "../assets/img";
 
 
 
@@ -17,81 +18,6 @@ export const requirementData = [
     { id: 3, alt: "Gift Pics", img: gift, title: "Gifts And Follow Ups", desc: imageDesc.gift, },
 ]
 
-
-// export const sideBarData = [
-//   {
-//     id: 0,
-//     name: "Home",
-//   },
-//   {
-//     id: 1,
-//     name: "Profile",
-//   },
-//   {
-//     id: 2,
-//     name: "Courses",
-//   },
-//   {
-//     id: 3,
-//     name: "Content",
-//   },
-// ]
-
-// export const rightDropDownData = [
-//   {
-//     id: 0,
-//     name: "Back to Sign In Page",
-//     link: "/login",
-//   },
-//   {
-//     id: 1,
-//     name: "Edit Registration Data",
-//     link: "/login",
-//   },
-//   {
-//     id: 2,
-//     name: "Join Whatsapp Group",
-//     link: "",
-//   },
-//   {
-//     id: 3,
-//     name: "Sign Out",
-//     link: "/login",
-//   },
-// ]
-
-// export const openWhatsappLink = () => {
-//   const phoneNumber = '2348055549979';
-//   const message = 'Hello, how can we help you?';
-//   const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-//   window.open(whatsappURL, '_blank', 'noreferrer');
-// }
-
-// const data = {
-//   labels: [
-//     'Basic Web Development', 'Front End Development', 
-//     'Back End Development', 'Mobile App Development', 'Python',
-//   ],
-//   datasets: [
-//     {
-//       label: 'No. of weeks',
-//       data: [4, 8, 8, 8, 6 ],
-//       backgroundColor: 'rgba(75, 192, 192, 0.2)',
-//       borderColor: 'rgba(75, 192, 192, 1)',
-//       borderWidth: 1,
-//     },
-//   ],
-// };
-
-// export const config = {
-//   type: 'bar',
-//   data: data,
-// };
-
-
-
-// export default courses;
-// export const password = "Shosanboggs7#";
 
 export const getdateNumber = (dateString) => {
     const dateNumber = new Date(dateString).getUTCDate();
@@ -216,5 +142,45 @@ export const secFunct = (sec) => {
         return `0${sec}`;
     } else return sec;
 }
+
+
+export const serviceHighlights = [
+    {
+      id: 0,
+      name: "Expert Tutoring",
+      title: "Learn from professionals with years of hands-on experience. Our instructors are passionate about guiding you through the ins and outs of programming, ensuring you gain real-world insights",
+      img: features01,
+    },
+    {
+      id: 1,
+      name: "Comprehensive Curriculum",
+      title: "Stay ahead of the curve with a curriculum designed to cover the latest programming languages, frameworks, and industry trends. From Python to JavaScript, we've got you covered",
+      img: features02,
+    },
+    {
+      id: 2,
+      name: "Flexible Learning",
+      title: "Life is busy, and we get it! Our online classes are structured to fit your schedule. Learn at your own pace, from the comfort of your home, and access course materials 24/7",
+      img: features03,
+    },
+    {
+      id: 3,
+      name: "Hands-On Projects",
+      title: "Put theory into practice with engaging, hands-on projects that reinforce your learning. Build a portfolio of impressive projects to showcase your skills to future employers",
+      img: features04,
+    },
+    {
+      id: 4,
+      name: "Community Support",
+      title: "Join a vibrant community of learners, exchange ideas, and get help when you need it. Our dedicated support team and forums ensure you're never alone on your coding journey",
+      img: features05,
+    },
+    {
+      id: 5,
+      name: "Career Guidance",
+      title: "Looking to land that dream job in tech? Our courses come with valuable career guidance, including resume reviews, interview tips, and networking opportunities",
+      img: features06,
+    },
+];
 
 
