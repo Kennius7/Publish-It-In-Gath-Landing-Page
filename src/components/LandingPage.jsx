@@ -1,5 +1,5 @@
-// import { useContext, useEffect } from "react";
-// import { mainContext } from "../context/mainContext";
+import { useContext } from "react";
+import { mainContext } from "../context/mainContext";
 import { Home, Intro, Requirement, CallToAction } from "./index";
 // import Home from "./Home";
 
@@ -8,7 +8,7 @@ import { Home, Intro, Requirement, CallToAction } from "./index";
 
 
 function LandingPage() {
-  // const { setIfLandingLoaded } = useContext(mainContext);
+  const { dateLoaded } = useContext(mainContext);
 
   // useEffect(() => {
   //   setIfLandingLoaded(true);
@@ -17,12 +17,20 @@ function LandingPage() {
 
   return (
     <>
-        <Home/>
-        <Intro/>
-        <Requirement/>
-        <CallToAction/>
-        {/* <CourseList/>
-        <BulletPoints/> */}
+      { !dateLoaded ? 
+        <div className="w-full h-dvh flex flex-row justify-center items-center text-[30px] 
+          font-semibold zoom-in-out-element">
+          Loading...
+        </div> : 
+        <div>
+          <Home/>
+          <Intro/>
+          <Requirement/>
+          <CallToAction/>
+          {/* <CourseList/>
+          <BulletPoints/> */}
+        </div>
+      }
     </>
   )
 }

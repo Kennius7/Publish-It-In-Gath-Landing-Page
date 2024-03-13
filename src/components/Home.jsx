@@ -1,65 +1,3 @@
-
-
-// function Home() {
-//     return (
-//         <>
-//             <div className="landing-page">
-//                 <header>
-//                     <h1>Welcome to Our Church</h1>
-//                     <p>Join us for a time of worship, fellowship, and community.</p>
-//                 </header>
-//                 <section className="about-section">
-//                     <h2>About Us</h2>
-//                     <p>
-//                         We are a community of believers dedicated to growing in our faith,
-//                         supporting one another, and spreading the love of Christ.
-//                     </p>
-//                 </section>
-//                 <section className="event-section">
-//                     <h2>Upcoming Event</h2>
-//                     <p>
-//                         Join us for our next worship service on Sunday at 10:00 AM. We look
-//                         forward to having you with us!
-//                     </p>
-//                 </section>
-//                 <section className="contact-section">
-//                     <h2>Contact Us</h2>
-//                     <p>
-//                         If you have any questions or need more information, feel free to
-//                         reach out to us.
-//                     </p>
-//                     <button>Contact Us</button>
-//                 </section>
-//                 <footer>
-//                     <p>&copy; 2024 Our Church. All rights reserved.</p>
-//                 </footer>
-//             </div>
-//         </>
-//     )
-// }
-
-// export default Home
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import backgroundPics from "../assets/img/BG4.jpg";
 import logo from "../assets/img/Logo.jpg";
 import { useContext } from "react";
@@ -70,7 +8,7 @@ import { getFullDayFunction, getFullMonthFunction, getYear, getdateNumber } from
 
 
 const Home = () => {
-    const { days, hours, minutes, seconds, futureDate } = useContext(mainContext);
+    const { days, hours, minutes, seconds, futureDate, handleDateBtn, dateTestBtn } = useContext(mainContext);
     // console.log(new Date("02/09/2024 07:30:00").toUTCString());
     // const dayString = new Date("02/03/2024 07:30:00").getDay();
     // 🚀🚀🚀
@@ -143,6 +81,12 @@ const Home = () => {
 
                             </div>
 
+                        </div>
+
+                        <div
+                            onClick={handleDateBtn} 
+                            className="bg-red-200 p-3 cursor-pointer">
+                            {dateTestBtn}
                         </div>
 
                         <div className="flex flex-col justify-center items-center w-[100%]">

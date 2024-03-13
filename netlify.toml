@@ -1,0 +1,9 @@
+# netlify.toml
+
+[build]
+  functions = "functions"
+
+[[redirects]]
+  from = "/api/countdown"
+  to = "/.netlify/functions/countdown"
+  status = 200

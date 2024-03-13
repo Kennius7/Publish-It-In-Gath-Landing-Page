@@ -59,7 +59,7 @@ function Intro () {
                                     <div className="flex justify-center items-center box-shadow 
                                         rounded-[10px] overflow-hidden md:w-[550px] md:h-[450px] 
                                         sm:w-[400px] sm:h-[350px] xs:w-[400px] xs:h-[250px] 
-                                        w-[90%] h-[220px]">
+                                        w-[90%] h-[220px] bg-red-300">
                                         <img 
                                             src={item.img} 
                                             alt={item.name}

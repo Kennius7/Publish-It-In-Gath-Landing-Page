@@ -183,4 +183,36 @@ export const serviceHighlights = [
     },
 ];
 
+const timeVariable = "07:30:00";
+
+export const sundayDates2024 = [
+    {date: `01/07/2024 ${timeVariable}`}, {date: `01/14/2024 ${timeVariable}`}, 
+    {date: `01/21/2024 ${timeVariable}`}, {date: `01/28/2024 ${timeVariable}`}, 
+    {date: `02/04/2024 ${timeVariable}`}, {date: `02/11/2024 ${timeVariable}`}, 
+    {date: `02/18/2024 ${timeVariable}`}, {date: `02/25/2024 ${timeVariable}`}, 
+    {date: `03/03/2024 ${timeVariable}`}, {date: `03/10/2024 ${timeVariable}`}, 
+    {date: `03/17/2024 ${timeVariable}`}, {date: `03/24/2024 ${timeVariable}`}, 
+    {date: `03/31/2024 ${timeVariable}`}, {date: `04/07/2024 ${timeVariable}`}, 
+    {date: `04/14/2024 ${timeVariable}`}, {date: `04/21/2024 ${timeVariable}`}, 
+    {date: `04/28/2024 ${timeVariable}`}, {date: `05/05/2024 ${timeVariable}`}, 
+    {date: `05/12/2024 ${timeVariable}`}, {date: `05/19/2024 ${timeVariable}`}, 
+    {date: `05/26/2024 ${timeVariable}`}, {date: `06/02/2024 ${timeVariable}`}, 
+    {date: `06/09/2024 ${timeVariable}`}, {date: `06/16/2024 ${timeVariable}`}, 
+    {date: `06/23/2024 ${timeVariable}`}, {date: `06/31/2024 ${timeVariable}`}, 
+    {date: `07/07/2024 ${timeVariable}`}, {date: `07/14/2024 ${timeVariable}`}, 
+    {date: `07/21/2024 ${timeVariable}`}, {date: `07/28/2024 ${timeVariable}`}, 
+    {date: `08/04/2024 ${timeVariable}`}, {date: `08/11/2024 ${timeVariable}`}, 
+    {date: `08/18/2024 ${timeVariable}`}, {date: `08/25/2024 ${timeVariable}`}, 
+    {date: `09/01/2024 ${timeVariable}`}, {date: `09/08/2024 ${timeVariable}`}, 
+    {date: `09/15/2024 ${timeVariable}`}, {date: `09/22/2024 ${timeVariable}`}, 
+    {date: `09/29/2024 ${timeVariable}`}, {date: `10/06/2024 ${timeVariable}`}, 
+    {date: `10/13/2024 ${timeVariable}`}, {date: `10/20/2024 ${timeVariable}`}, 
+    {date: `10/27/2024 ${timeVariable}`}, {date: `11/03/2024 ${timeVariable}`}, 
+    {date: `11/10/2024 ${timeVariable}`}, {date: `11/17/2024 ${timeVariable}`}, 
+    {date: `11/24/2024 ${timeVariable}`}, {date: `12/01/2024 ${timeVariable}`}, 
+    {date: `12/08/2024 ${timeVariable}`}, {date: `12/15/2024 ${timeVariable}`},
+    {date: `12/22/2024 ${timeVariable}`}, {date: `12/29/2024 ${timeVariable}`},
+];
+
+
 
