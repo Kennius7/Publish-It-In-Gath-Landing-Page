@@ -8,9 +8,7 @@ import { getFullDayFunction, getFullMonthFunction, getYear, getdateNumber } from
 
 
 const Home = () => {
-    const { days, hours, minutes, seconds, futureDate, handleDateBtn, dateTestBtn } = useContext(mainContext);
-    // console.log(new Date("02/09/2024 07:30:00").toUTCString());
-    // const dayString = new Date("02/03/2024 07:30:00").getDay();
+    const { days, hours, minutes, seconds, futureDate } = useContext(mainContext);
     // 🚀🚀🚀
 
     return (
@@ -83,11 +81,11 @@ const Home = () => {
 
                         </div>
 
-                        <div
+                        {/* <div
                             onClick={handleDateBtn} 
                             className="bg-red-200 p-3 cursor-pointer">
                             {dateTestBtn}
-                        </div>
+                        </div> */}
 
                         <div className="flex flex-col justify-center items-center w-[100%]">
 

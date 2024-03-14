@@ -4,7 +4,7 @@ import { mainContext } from "./context/mainContext";
 import LandingPage from "./components/LandingPage";
 import ScrollToTop from "./ScrollToTop";
 import { monthFunct, dayFunct, hourFunct, minuteFunct, secFunct } from "./components/data";
-import { collection, getDoc, doc, updateDoc, setDoc } from 'firebase/firestore';
+import { getDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from "../FirebaseConfig";
 
 
@@ -16,7 +16,7 @@ function App() {
   const [ifLandingLoaded, setIfLandingLoaded] = useState(false);
   const [dateLoaded, setDateLoaded] = useState(true);
 
-  const [customDate, setCustomDate] = useState("03/07/2024 18:38:00");
+  const [customDate, setCustomDate] = useState("03/17/2024 07:30:00");
   const timeVariable1 = new Date(customDate);
   const timeVariable2 = new Date;
   const [futureCounted, setFutureCounted] = useState(timeVariable1.valueOf());
@@ -39,6 +39,7 @@ function App() {
   const getNowDay = UTCNowDate.getDate();
   const getNowMonth = UTCNowDate.getMonth();
   const getNowYear = UTCNowDate.getFullYear();
+  // eslint-disable-next-line no-unused-vars
   const nowDate = `${monthFunct(getNowMonth)}/${dayFunct(getNowDay)}/${getNowYear} ${hourFunct(getNowHours)}:${minuteFunct(getNowMinutes)}:${secFunct(getNowSeconds)}`;
 
   const sevenDaysCount = 604800000;
@@ -49,9 +50,11 @@ function App() {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
-  const [dateTestBtn, setDateTestbtn] = useState(customDate);
+  // const [dateTestBtn, setDateTestbtn] = useState(customDate);
+
+
   // This creates a new collection in the firestore
-  const customDateRef = collection(db, "Current-Date");
+  // const customDateRef = collection(db, "Current-Date");
 
 
   const fetchDateData = async () => {
@@ -73,15 +76,15 @@ function App() {
     }
   }
 
-  const handleDateBtn = async () => {
-    try {
-      await updateDoc(doc(customDateRef, "date_document"), { Date: nowDate });
-      setDateTestbtn(nowDate);
-      console.log("Success updating Date");
-    } catch (err) {
-      console.log("Error updating Date");
-    }
-  }
+  // const handleDateBtn = async () => {
+  //   try {
+  //     await updateDoc(doc(customDateRef, "date_document"), { Date: nowDate });
+  //     setDateTestbtn(nowDate);
+  //     console.log("Success updating Date");
+  //   } catch (err) {
+  //     console.log("Error updating Date");
+  //   }
+  // }
 
 
   const updateDateFunction = async () => {
@@ -121,8 +124,7 @@ function App() {
     <>
       <mainContext.Provider 
         value={{ hours, minutes, seconds, days, futureDate, active, setActive, menuVisible, setMenuVisible, 
-        ifLandingLoaded, setIfLandingLoaded, dateTestBtn, setDateTestbtn, handleDateBtn, dateLoaded, 
-        setDateLoaded }}>
+        ifLandingLoaded, setIfLandingLoaded, dateLoaded, setDateLoaded }}>
         <BrowserRouter>
           <ScrollToTop />
           <Routes>
