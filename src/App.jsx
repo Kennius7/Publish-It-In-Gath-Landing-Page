@@ -14,7 +14,7 @@ function App() {
   const [active, setActive] = useState("Home");
   const [menuVisible, setMenuVisible] = useState(false);
   const [ifLandingLoaded, setIfLandingLoaded] = useState(false);
-  const [dateLoaded, setDateLoaded] = useState(false);
+  const [dateLoaded, setDateLoaded] = useState(true);
 
   const [customDate, setCustomDate] = useState("03/07/2024 18:38:00");
   const timeVariable1 = new Date(customDate);

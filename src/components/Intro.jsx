@@ -20,7 +20,7 @@ function Intro () {
         rewind: true,
         rewindSpeed: 2000,
         isNavigation: false,
-        arrows: true,
+        arrows: false,
         focus: 0,
         start: 0,
         interval: 4000,
@@ -36,8 +36,8 @@ function Intro () {
         padding: '1rem',
         mediaQuery: "min",
         breakpoints: {
-          1000: { perPage: 1},
-          580: { perPage: 1},
+          1000: { perPage: 2},
+          580: { perPage: 2},
           300: { perPage: 1},
           100: { perPage: 1},
         },
@@ -46,13 +46,12 @@ function Intro () {
     return (
         <>
             <div className="flex justify-around items-center w-full md:h-[700px] sm:h-[600px] 
-                xs:h-[500px] h-[560px]">
+                xs:h-[500px] h-[560px] bg-blue-300">
 
                 <div className="bg-style w-full h-full flex justify-around items-center">
 
                     <div className="relative flex sm:flex-row flex-col sm:justify-around justify-center 
-                        items-center">
-
+                        items-center bg-green-200">
                         <Splide options={serviceSplideOptions}>
                             {serviceHighlights.map((item) => {
                                 <SplideSlide key={item.id}>
@@ -63,18 +62,18 @@ function Intro () {
                                         <img 
                                             src={item.img} 
                                             alt={item.name}
-                                            className="w-full h-full object-cover" 
-                                        />
-                                        <div>Hello</div>
+                                            className="w-full h-full object-cover bg-red-300 bg-cover" 
+                                            />
+                                        <div className="bg-green-400 w-[100px] h-[100px]">Hello</div>
                                     </div>
                                 </SplideSlide>
                             })}
                         </Splide>
-                        
+
                         <div className="flex justify-center items-center sm:w-[40%] xs:w-[75%] w-[88%]">
-                            <div className="font-poppins font-semibold sm:text-start text-center text-slate-700
-                                md:text-[28px] sm:text-[20px] xs:text-[16px] text-[15px] sm:mt-0 
-                                xs:mt-[20px] mt-[40px]">
+                            <div className="font-poppins font-semibold sm:text-start text-center 
+                                text-slate-700 md:text-[28px] sm:text-[20px] xs:text-[16px] 
+                                text-[15px] sm:mt-0 xs:mt-[20px] mt-[40px]">
                                 Join us for an awesome time of worship, word ministration, and prophetic impartation 
                                 at the <br/>
                                 <span className="text-[#c09e40] navText3">
