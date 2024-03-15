@@ -45,13 +45,14 @@ function Intro () {
 
     return (
         <>
-            <div className="flex justify-around items-center w-full md:h-[600px] sm:h-[600px] 
-                xs:h-[500px] h-[560px] bg-slate-400 gradient-background">
+            <div className="flex justify-around items-center w-full md:h-[600px] sm:h-[450px] 
+                xs:h-[320px] h-[560px] gradient-background">
 
-                <div className="bg-style w-full h-full flex justify-around items-center">
+                <div className="w-full h-full flex justify-around items-center">
 
-                    <div className="relative flex sm:flex-row flex-col sm:justify-around justify-center 
-                        sm:items-start items-center">
+                    <div className="flex xs:flex-row flex-col sm:justify-around justify-center 
+                        xs:items-start items-center w-full h-full md:mt-[80px] sm:mt-[50px] 
+                        xs:mt-[60px] mt-[40px]">
                         {/* <Splide options={serviceSplideOptions}>
                             {serviceHighlights.map((item) => {
                                 <SplideSlide key={item.id}>
@@ -69,31 +70,34 @@ function Intro () {
                                 </SplideSlide>
                             })}
                         </Splide> */}
-                        <div className="w-[54%] h-full">
+                        <div className="sm:w-[54%] xs:w-[60%] w-[54%] h-full">
                             <video 
                                 src={introVid} autoPlay muted loop playsInline 
                                 width="800" height="400"
-                                className="w-full object-cover md:h-[450px] sm:h-[600px] xs:h-[400px] 
+                                className="w-full object-cover md:h-[450px] sm:h-[300px] xs:h-[200px]
                                 h-[300px] rounded-[7px]" />
                         </div>
                         <div className="flex flex-col justify-between items-start sm:w-[45%] 
-                            xs:w-[75%] w-[88%] h-full py-3 pl-2">
-                            <div className="font-poppins font-semibold sm:text-start text-center 
-                                text-slate-200 md:text-[23px] sm:text-[20px] xs:text-[16px] 
-                                text-[15px] sm:mt-0 xs:mt-[20px] mt-[40px] tracking-tighter 
-                                w-full h-full">
+                            xs:w-[40%] w-[88%] md:h-[75%] sm:h-[70%] xs:h-[60%] h-[90%] sm:py-3 
+                            xs:py-0 py-1 pl-2">
+                            <div className="font-poppins font-semibold xs:text-start text-center 
+                                text-slate-200 md:text-[23px] sm:text-[17px] xs:text-[13px] 
+                                text-[15px] xs:mt-0 mt-[40px] tracking-tighter w-full h-full 
+                                sm:leading-normal xs:leading-[18px] leading-normal">
                                 Join us for an awesome time of worship, word ministration, and 
                                 prophetic impartation at the <br/>
                                 <span className="text-[#c09e40] navText3">
                                     Ark of Light For All Nations,
                                 </span> Gospel Pillars Ministries, <br/>
-                                <span className="font-sans font-bold text-[20px] italic underline">
+                                <span className="font-sans font-bold md:text-[20px] sm:text-[17px] 
+                                    xs:text-[11px] text-[13px] italic underline">
                                     11C, Kudirat Abiola way, Alausa, Ikeja, Lagos.
                                 </span>
                             </div>
-                            <div className="text-slate-800 w-[90%]">
-                                {/* <br/> <br className="sm:block xs:hidden block" /> */}
-                                <span className="font-sans font-semibold text-[23px] italic">
+                            <div className="text-slate-800 sm:w-[90%] xs:w-[98%] w-[90%] 
+                                md:leading-normal sm:leading-[22px] xs:leading-[14px] leading-normal">
+                                <span className="font-sans font-semibold md:text-[23px] sm:text-[18px] 
+                                    xs:text-[12px] text-[13px] italic">
                                     Whether you&apos;re a staunch follower of Christ who is looking for a place of worship,
                                     or you are a newcomer to the Christian faith and you need a guiding hand, we believe you&apos;ve 
                                     come to the right place.

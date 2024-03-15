@@ -13,66 +13,76 @@ const Home = () => {
 
     return (
         <>
-            <div className="w-full relative md:h-[500px] sm:h-[600px] xs:h-[500px] h-[400px]">
+            <div className="w-full relative md:h-[580px] sm:h-[600px] xs:h-[400px] h-[350px]">
                 <div className="w-full h-full">
                     <img src={backgroundPics} className="w-full h-full object-cover opacity-50" />
                 </div>
 
                 <div className="absolute z-1 top-0 left-0 flex flex-col justify-between items-start 
-                    w-full h-full pb-[20px]">
+                    w-full h-full">
 
-                    <div className="w-full flex justify-between items-center md:mb-[60px] sm:mb-[30px] 
-                        xs:mb-[40px] mb-[20px] sm:pb-4 p-1 gradient-background sm:h-[80px] h-[50px]">
-                        <div className="flex justify-start items-center">
+                    <div className="w-full flex justify-between sm:items-center items-start 
+                        md:mb-[60px] sm:mb-[30px] xs:mb-[50px] mb-[20px] sm:pb-4 pb-0 p-1 
+                        gradient-background sm:h-[80px] xs:h-[25%] h-[80px]">
+
+                        <div className="flex justify-start items-start w-full h-full">
                             <img 
                                 src={logo}
                                 alt="logo" 
-                                className="md:w-[40px] md:h-[40px] sm:w-[35px] sm:h-[35px] 
+                                className="md:w-[40px] md:h-[40px] sm:w-[38px] sm:h-[38px] 
                                     xs:w-[30px] xs:h-[30px] w-[24px] h-[24px]" 
                             />
-                            <div className="font-poppins font-semibold text-start md:text-[28px] sm:text-[20px] 
-                                xs:text-[16px] text-[13px] sm:pl-[10px] pl-[6px] text-[#f19ca1] navText3">
+                            <div className="font-poppins font-semibold text-start md:text-[28px] 
+                                sm:text-[24px] xs:text-[16px] text-[13px] sm:pl-[10px] pl-[6px] 
+                                text-[#f19ca1] navText3">
                                 Publish <span className="text-[#c97598]">It In</span> Gath
                             </div>
                         </div>
-                        <div>
-                            <div className="font-sans font-semibold text-end sm:text-[16px] xs:text-[13px] 
-                                text-[10px] text-[#f0dcd2] italic pr-[4px]">
+                        <div className="flex justify-end items-start w-full h-full">
+                            <div className="font-sans font-semibold text-end md:text-[18px] 
+                                sm:text-[17px] xs:text-[13px] text-[11px] text-[#f0dcd2] 
+                                italic sm:leading-normal xs:leading-[16px] 
+                                leading-[13px]">
                                 Our next service is on {getFullDayFunction(futureDate)},&nbsp;
                                 <br className={`md:hidden block`}/>
-                                the {getdateNumber(futureDate)}th of {getFullMonthFunction(futureDate)}, {getYear(futureDate)}
+                                the {getdateNumber(futureDate)}th 
+                                of {getFullMonthFunction(futureDate)}, {getYear(futureDate)}&nbsp;
                             </div>
                         </div>
                     </div>
 
-                    <div className="w-full flex flex-col justify-between items-center h-[80%]">
+                    <div className="w-full flex flex-col justify-between items-center sm:h-[80%] 
+                        xs:h-[72%] h-[80%] md:pb-0 sm:pb-4 xs:pb-6 pb-1">
 
                         <div className="w-full flex flex-col justify-center items-center 
-                            md:mb-[1%] sm:mb-[3%] xs:mb-[4%] mb-[3%] h-[60%]">
+                            md:mb-[1%] sm:mb-[1%] xs:mb-0 mb-[3%] md:h-[60%] sm:h-[40%] xs:h-[45%] h-[60%]">
 
                             <div className="font-poppins font-bold text-center md:text-[39px] 
-                                sm:text-[32px] xs:text-[24px] text-[20px] md:max-w-[800px] sm:max-w-[600px] 
-                                xs:max-w-[420px] max-w-[320px] md:mb-0 text-[#2e150f] navText2
-                                sm:mb-[1%] xs:mb-[3%] mb-[2%] xs:leading-normal leading-[27px]">
+                                sm:text-[32px] xs:text-[25px] text-[23px] md:max-w-[800px] sm:max-w-[600px] 
+                                xs:max-w-[420px] max-w-[360px] text-[#2e150f] navText2
+                                sm:mb-0 xs:mb-[3%] mb-[2%] xs:leading-normal leading-[27px]">
                                 Welcome to Publish It In Gath
                             </div>
 
-                            <div className="flex flex-wrap justify-center items-center font-poppins font-semibold 
-                                text-primary md:mb-[2%] sm:mb-[8%] xs:mb-[14%] mb-[7%] xs:w-full w-[90%]">
+                            <div className="flex flex-wrap justify-center items-center font-poppins 
+                                font-semibold text-primary md:mb-[2%] sm:mb-[4%] xs:mb-[14%] 
+                                mb-[7%] md:w-full sm:w-[80%] xs:w-full w-[94%]">
 
-                                <div className="text-center sm:text-[18px] xs:text-[16px] text-[16px] 
-                                    mr-[7px] xs:tracking-normal tracking-tighter navText2">
+                                <div className="text-center md:text-[21px] sm:text-[20px] 
+                                    xs:text-[16px] text-[13px] xs:mr-[7px] mr-0 xs:tracking-normal 
+                                    tracking-tighter navText2 md:mb-2 sm:mb-1 mb-1 w-full">
                                     An online publicity media and mobilization platform for
                                 </div>
-
-                                <div className="text-center md:w-[350px] sm:w-[230px] xs:w-[180px] w-[180px] 
-                                    md:text-[19px] sm:text-[20px] xs:text-[16px] text-[16px] bg-red-600 
-                                    text-white rounded-[8px] px-2 py-1 xs:ml-[6px] ml-[3px]">
+                                {/* <br className="md-hidden sm-block hidden" /> */}
+                                <div className="text-center md:text-[20px] sm:text-[20px] xs:text-[16px] 
+                                    text-[12px] bg-red-600 text-white rounded-[8px] 
+                                    md:px-3 sm:px-4 xs:px-2 px-0 py-1 
+                                    xs:ml-[6px] ml-0">
                                     <span className="text-yellow-300/70 navText1">
                                         Gospel Pillars Ministries
                                     </span> Expansion
                                 </div> 
-                                <div className="text-center sm:text-[20px] xs:text-[16px] text-[17px] 
+                                <div className="text-center sm:text-[20px] xs:text-[16px] text-[13px] 
                                     ml-[10px] navText2">
                                     In Lagos!
                                 </div>
@@ -81,19 +91,13 @@ const Home = () => {
 
                         </div>
 
-                        {/* <div
-                            onClick={handleDateBtn} 
-                            className="bg-red-200 p-3 cursor-pointer">
-                            {dateTestBtn}
-                        </div> */}
-
                         <div className="flex flex-col justify-center items-center w-[100%]">
 
                             <div className="flex justify-center items-center bg-blue-100 rounded-[10px] 
-                                border-[1px] border-yellow-500 md:w-[30%] sm:w-[30%] xs:w-[35%] w-[45%] 
-                                my-[15px]">
+                                border-[1px] border-yellow-500 md:w-[30%] sm:w-[40%] xs:w-[45%] w-[55%] 
+                                xs:mb-[30px] mb-[20px]">
                                 <div className="font-sans font-bold text-slate-800 sm:text-[26px] 
-                                    xs:text-[20px] text-[16px] my-[5px] tracking-widest">
+                                    xs:text-[18px] text-[16px] my-[5px] tracking-widest">
                                     NEXT TAKE OFF IN
                                 </div>
                             </div>
