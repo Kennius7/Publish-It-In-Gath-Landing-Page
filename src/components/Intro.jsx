@@ -46,61 +46,45 @@ function Intro () {
     return (
         <>
             <div className="flex justify-around items-center w-full md:h-[600px] sm:h-[450px] 
-                xs:h-[320px] h-[560px] gradient-background">
+                xs:h-[320px] h-[450px] gradient-background">
 
                 <div className="w-full h-full flex justify-around items-center">
 
-                    <div className="flex xs:flex-row flex-col sm:justify-around justify-center 
+                    <div className="flex xs:flex-row flex-col sm:justify-around justify-start 
                         xs:items-start items-center w-full h-full md:mt-[80px] sm:mt-[50px] 
-                        xs:mt-[60px] mt-[40px]">
-                        {/* <Splide options={serviceSplideOptions}>
-                            {serviceHighlights.map((item) => {
-                                <SplideSlide key={item.id}>
-                                    <div className="flex justify-center items-center box-shadow 
-                                        rounded-[10px] overflow-hidden md:w-[550px] md:h-[450px] 
-                                        sm:w-[400px] sm:h-[350px] xs:w-[400px] xs:h-[250px] 
-                                        w-[90%] h-[220px] bg-red-300">
-                                        <img 
-                                            src={item.img} 
-                                            alt={item.name}
-                                            className="w-full h-full object-cover bg-red-300 bg-cover" 
-                                            />
-                                        <div className="bg-green-400 w-[100px] h-[100px]">Hello</div>
-                                    </div>
-                                </SplideSlide>
-                            })}
-                        </Splide> */}
-                        <div className="sm:w-[54%] xs:w-[60%] w-[54%] h-full">
+                        xs:mt-[60px] mt-[5%]">
+
+                        <div className="sm:w-[54%] xs:w-[60%] w-[94%] h-[47%]">
                             <video 
                                 src={introVid} autoPlay muted loop playsInline 
                                 width="800" height="400"
                                 className="w-full object-cover md:h-[450px] sm:h-[300px] xs:h-[200px]
-                                h-[300px] rounded-[7px]" />
+                                h-[200px] rounded-[7px]" />
                         </div>
                         <div className="flex flex-col justify-between items-start sm:w-[45%] 
-                            xs:w-[40%] w-[88%] md:h-[75%] sm:h-[70%] xs:h-[60%] h-[90%] sm:py-3 
+                            xs:w-[40%] w-full md:h-[75%] sm:h-[70%] xs:h-[60%] h-[45%] sm:py-3 
                             xs:py-0 py-1 pl-2">
                             <div className="font-poppins font-semibold xs:text-start text-center 
-                                text-slate-200 md:text-[23px] sm:text-[17px] xs:text-[13px] 
-                                text-[15px] xs:mt-0 mt-[40px] tracking-tighter w-full h-full 
+                                text-slate-100 md:text-[23px] sm:text-[17px] xs:text-[13px] 
+                                text-[15px] mt-0 tracking-tighter w-full h-full 
                                 sm:leading-normal xs:leading-[18px] leading-normal">
                                 Join us for an awesome time of worship, word ministration, and 
                                 prophetic impartation at the <br/>
-                                <span className="text-[#c09e40] navText3">
+                                <span className="xs:text-[#c09e40] text-[#7e6728] xs:navText3">
                                     Ark of Light For All Nations,
                                 </span> Gospel Pillars Ministries, <br/>
                                 <span className="font-sans font-bold md:text-[20px] sm:text-[17px] 
-                                    xs:text-[11px] text-[13px] italic underline">
+                                    xs:text-[11px] text-[15px] italic underline">
                                     11C, Kudirat Abiola way, Alausa, Ikeja, Lagos.
                                 </span>
                             </div>
-                            <div className="text-slate-800 sm:w-[90%] xs:w-[98%] w-[90%] 
-                                md:leading-normal sm:leading-[22px] xs:leading-[14px] leading-normal">
-                                <span className="font-sans font-semibold md:text-[23px] sm:text-[18px] 
-                                    xs:text-[12px] text-[13px] italic">
-                                    Whether you&apos;re a staunch follower of Christ who is looking for a place of worship,
-                                    or you are a newcomer to the Christian faith and you need a guiding hand, we believe you&apos;ve 
-                                    come to the right place.
+                            <div className="font-sans font-semibold text-slate-800 sm:w-[90%] 
+                                w-[98%] italic xs:text-start text-center md:leading-normal 
+                                sm:leading-[22px] xs:leading-[14px] leading-normal">
+                                <span className=" md:text-[23px] sm:text-[18px] xs:text-[12px] text-[14px]">
+                                    Whether you&apos;re a staunch follower of Christ who is looking 
+                                    for a place of worship, or you are a newcomer to the Christian 
+                                    faith and you need a guiding hand, you&apos;ve come to the right place.
                                 </span>
                             </div>
                         </div>

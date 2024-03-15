@@ -23,7 +23,7 @@ const Home = () => {
 
                     <div className="w-full flex justify-between sm:items-center items-start 
                         md:mb-[60px] sm:mb-[30px] xs:mb-[50px] mb-[20px] sm:pb-4 pb-0 p-1 
-                        gradient-background sm:h-[80px] xs:h-[25%] h-[80px]">
+                        gradient-background md:h-[12%] sm:h-[13%] xs:h-[25%] h-[15%] pt-1">
 
                         <div className="flex justify-start items-start w-full h-full">
                             <img 
@@ -33,13 +33,13 @@ const Home = () => {
                                     xs:w-[30px] xs:h-[30px] w-[24px] h-[24px]" 
                             />
                             <div className="font-poppins font-semibold text-start md:text-[28px] 
-                                sm:text-[24px] xs:text-[16px] text-[13px] sm:pl-[10px] pl-[6px] 
+                                sm:text-[24px] xs:text-[18px] text-[15px] sm:pl-[10px] pl-[6px] 
                                 text-[#f19ca1] navText3">
                                 Publish <span className="text-[#c97598]">It In</span> Gath
                             </div>
                         </div>
                         <div className="flex justify-end items-start w-full h-full">
-                            <div className="font-sans font-semibold text-end md:text-[18px] 
+                            <div className="font-sans font-semibold text-end md:text-[22px] 
                                 sm:text-[17px] xs:text-[13px] text-[11px] text-[#f0dcd2] 
                                 italic sm:leading-normal xs:leading-[16px] 
                                 leading-[13px]">
@@ -51,11 +51,11 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="w-full flex flex-col justify-between items-center sm:h-[80%] 
-                        xs:h-[72%] h-[80%] md:pb-0 sm:pb-4 xs:pb-6 pb-1">
+                    <div className="w-full flex flex-col justify-between items-center md:h-[80%] sm:h-[75%] 
+                        xs:h-[72%] h-[80%] md:pb-0 sm:pb-10 xs:pb-12 pb-4">
 
                         <div className="w-full flex flex-col justify-center items-center 
-                            md:mb-[1%] sm:mb-[1%] xs:mb-0 mb-[3%] md:h-[60%] sm:h-[40%] xs:h-[45%] h-[60%]">
+                            md:mb-[1%] sm:mb-[1%] xs:mb-0 mb-[1%] md:h-[60%] sm:h-[40%] xs:h-[45%] h-[58%]">
 
                             <div className="font-poppins font-bold text-center md:text-[39px] 
                                 sm:text-[32px] xs:text-[25px] text-[23px] md:max-w-[800px] sm:max-w-[600px] 
@@ -76,7 +76,7 @@ const Home = () => {
                                 {/* <br className="md-hidden sm-block hidden" /> */}
                                 <div className="text-center md:text-[20px] sm:text-[20px] xs:text-[16px] 
                                     text-[12px] bg-red-600 text-white rounded-[8px] 
-                                    md:px-3 sm:px-4 xs:px-2 px-0 py-1 
+                                    md:px-3 sm:px-4 xs:px-2 px-2 py-1 
                                     xs:ml-[6px] ml-0">
                                     <span className="text-yellow-300/70 navText1">
                                         Gospel Pillars Ministries

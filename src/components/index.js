@@ -3,7 +3,7 @@
 // export { default as Dashboard } from "./Dashboard";
 export { default as Home } from "./Home";
 export { default as Intro } from "./Intro";
-export { default as Requirement } from "./Requirement";
+export { default as SundayExpectation } from "./SundayExpectation";
 export { default as LandingPage } from "./LandingPage";
 export { default as CallToAction } from "./CallToAction";
 // export { default as Register } from "./Register";
