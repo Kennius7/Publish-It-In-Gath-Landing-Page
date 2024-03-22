@@ -22,24 +22,24 @@ const Home = () => {
                     w-full h-full">
 
                     <div className="w-full flex justify-between sm:items-center items-start 
-                        md:mb-[60px] sm:mb-[30px] xs:mb-[50px] mb-[20px] sm:pb-4 pb-0 p-1 
+                        md:mb-[40px] sm:mb-[30px] xs:mb-[50px] mb-[20px] sm:pb-4 pb-0 p-1 
                         gradient-background md:h-[12%] sm:h-[13%] xs:h-[25%] h-[15%] pt-1">
 
                         <div className="flex justify-start items-start w-full h-full">
                             <img 
                                 src={logo}
                                 alt="logo" 
-                                className="md:w-[40px] md:h-[40px] sm:w-[38px] sm:h-[38px] 
+                                className="md:w-[36px] md:h-[36px] sm:w-[38px] sm:h-[38px] 
                                     xs:w-[30px] xs:h-[30px] w-[24px] h-[24px]" 
                             />
-                            <div className="font-poppins font-semibold text-start md:text-[28px] 
+                            <div className="font-poppins font-semibold text-start md:text-[23px] 
                                 sm:text-[24px] xs:text-[18px] text-[15px] sm:pl-[10px] pl-[6px] 
                                 text-[#f19ca1] navText3">
                                 Publish <span className="text-[#c97598]">It In</span> Gath
                             </div>
                         </div>
                         <div className="flex justify-end items-start w-full h-full">
-                            <div className="font-sans font-semibold text-end md:text-[22px] 
+                            <div className="font-sans font-semibold text-end md:text-[18px] 
                                 sm:text-[17px] xs:text-[13px] text-[11px] text-[#f0dcd2] 
                                 italic sm:leading-normal xs:leading-[16px] 
                                 leading-[13px]">
@@ -102,7 +102,8 @@ const Home = () => {
                                 </div>
                             </div>
 
-                            <div className="flex justify-around items-center xs:w-[70%] w-[90%]">
+                            <div className="flex justify-around items-center xs:w-[70%] w-[90%] 
+                                md:mb-[50px] mb-0">
 
                                 <div className="flex flex-col justify-center items-center">
                                     <div className="flex justify-center items-center bg-primary box-shadow 

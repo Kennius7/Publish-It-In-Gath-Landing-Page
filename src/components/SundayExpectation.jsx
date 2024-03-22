@@ -14,7 +14,7 @@ function SundayExpectation() {
                   What To Expect on Sunday Morning
               </div>
               <div className="text-[#181544] font-sans italic sm:text-[20px] xs:text-[17px] 
-                text-[15px] sm:tracking-normal tracking-tight">
+                text-[14px] sm:tracking-normal tracking-tight">
                 (Pick up time is 7:30AM latest. Don&apos;t miss it, or you miss out!)
               </div>
             </div>

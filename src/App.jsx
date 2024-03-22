@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { mainContext } from "./context/mainContext";
 import LandingPage from "./components/LandingPage";
+import SuccessPage from "./components/SuccessPage";
 import ScrollToTop from "./ScrollToTop";
 import { monthFunct, dayFunct, hourFunct, minuteFunct, secFunct } from "./components/data";
 import { getDoc, doc, setDoc } from 'firebase/firestore';
@@ -16,7 +17,7 @@ function App() {
   const [ifLandingLoaded, setIfLandingLoaded] = useState(false);
   const [dateLoaded, setDateLoaded] = useState(true);
 
-  const [customDate, setCustomDate] = useState("03/17/2024 07:30:00");
+  const [customDate, setCustomDate] = useState("03/24/2024 07:30:00");
   const timeVariable1 = new Date(customDate);
   const timeVariable2 = new Date;
   const [futureCounted, setFutureCounted] = useState(timeVariable1.valueOf());
@@ -129,6 +130,7 @@ function App() {
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/success" element={<SuccessPage />} />
           </Routes>
         </BrowserRouter>
       </mainContext.Provider>

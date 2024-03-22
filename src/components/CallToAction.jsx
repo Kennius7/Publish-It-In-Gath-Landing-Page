@@ -1,30 +1,199 @@
-// import RegisterButton from "./RegisterButton";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Timestamp, addDoc, collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { db } from "../../FirebaseConfig";
 import backgroundPics from "../assets/img/BG4.jpg";
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { password } from "../data";
-const PIIG_GroupLink = "https://chat.whatsapp.com/CJWMYLMBQkBF8WvtBrOYbr";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+// const PIIG_GroupLink = "https://chat.whatsapp.com/CJWMYLMBQkBF8WvtBrOYbr";
 
 
 
 function CallToAction() {
-    // const Navigate = useNavigate();
-    // const passwordAdmin = password;
-    // const [clicked, setClicked] = useState(false);
-    // const [adminPassword, setAdminPassword] = useState("");
+    const Navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        fullName: '',
+        address: '',
+        number: ''
+    });
+    const [submitText, setSubmitText] = useState("Book Seat");
+    const [isSubmit, setIsSubmit] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [PIIGData, setPIIGData] = useState([]);
+    const [errorNumUI, setErrorNumUI] = useState(false);
+    const [errorNameUI, setErrorNameUI] = useState(false);
+    const numberRegex = /[0-9]/;
+    const fullNameRegex = /\s/;
+    // const docRefExample = "28lvUKGP3Mv8jvq32sU8";
 
-    // const handleChange = (e) => {
-    //     setAdminPassword(() => e.target.value);
-    // }
-    // const handleAdminClick = () => {
-    //     setClicked(!clicked);
-    // }
+    useEffect(() => {
+        const PIIG_DataRef = collection(db, "PIIG_Registrations");
+        const q = query(PIIG_DataRef, orderBy("createdAt", "desc"));
+    
+        onSnapshot(q, (snapshot) => {
+            const PIIG_Data = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+            }));
+            setPIIGData(PIIG_Data);
+        })
+    }, [])
 
-    const handleSubmit = () => {
-        // adminPassword === passwordAdmin 
-        //     ? Navigate("/dashboard") 
-        //     : console.log(adminPassword);
-        window.open(PIIG_GroupLink, '_blank', 'noreferrer');
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    }
+
+    const handleNumberChange = (e) => {
+        if (formData.number.length === 0) {
+            setErrorNumUI(false);
+            errors.number = '';
+            setFormData({
+                ...formData,
+                number: e.target.value,
+            });
+            return
+        }
+        if (formData.number.length > 0 && formData.number.length < 10) {
+            setErrorNumUI(true);
+            errors.number = 'Number must be eleven (11) digits';
+            setFormData({
+                ...formData,
+                number: e.target.value,
+            });
+            return
+        }
+        // if (formData.number.length === 11) {
+        //     setErrorNumUI(false);
+        //     errors.number = '';
+        //     setFormData({
+        //         ...formData,
+        //         number: e.target.value,
+        //     });
+        // }
+        if (formData.number.length > 10) {
+            setErrorNumUI(true);
+            errors.number = 'Number must be eleven (11) digits';
+            setFormData({
+                ...formData,
+                number: e.target.value,
+            });
+            return
+        }
+        setErrorNumUI(false);
+        errors.number = '';
+        setFormData({
+            ...formData,
+            number: e.target.value,
+        });
+    }
+
+    const SignUpTimeOut = () => {
+        setTimeout(() => {
+            setSubmitText("Book Seat");
+            setIsSubmit(false);
+            setTimeout(() => {
+                setErrors({});
+            }, 12000);
+        }, 1000);
+    }
+
+    const validateForm = () => {
+        const errors = {};
+
+        // Validate name
+        if (!formData.fullName) {
+            errors.fullName = 'Full Name is required';
+            SignUpTimeOut();
+        }
+        if (!fullNameRegex.test(formData.fullName)) {
+            setErrorNameUI(true);
+            errors.fullName = 'Ensure First Name and Surname are present';
+            SignUpTimeOut();
+            setTimeout(() => {
+                setErrorNameUI(false);
+            }, 13000);
+        }
+
+        // Validate home address
+        if (!formData.address) {
+            errors.address = 'Address is required';
+            SignUpTimeOut();
+        }
+
+        // Validate phone number
+        if (!numberRegex.test(parseInt(formData.number.toString()))) {
+            errors.number = 'Valid number is required';
+            SignUpTimeOut();
+        }
+
+        if (formData.number === "" || formData.number === "+234") {
+            errors.number = 'Please type in a Phone number';
+            SignUpTimeOut();
+        }
+
+        setErrors(errors);
+
+        // Return true if there are no errors
+        return Object.keys(errors).length === 0;
+    };
+
+    const generateHighestId = (arr) => {
+        if (arr.length === 0) {
+            return 0
+        } 
+        if (arr.length > 0) {
+            const ids = arr.map(item => item.regID);
+            const highestId = Math.max(...ids);
+            return (highestId + 1);
+        }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsSubmit(true);
+        console.log(formData);
+        
+        if (validateForm()) {
+            if (navigator.onLine) {
+                console.log("App online");
+                console.log("Registering...");
+                const regDataRef = collection(db, "PIIG_Registrations");
+                addDoc(regDataRef, {
+                    fullName: formData.fullName,
+                    address: formData.address,
+                    number: parseInt(formData.number.toString().slice(1)),
+                    createdAt: Timestamp.now().toDate(),
+                    regID: generateHighestId(PIIGData),
+                }).then(()=>{
+                    console.log("Registration successful");
+                    // toast("Registration successful", { type: "success" });
+                    setTimeout(() => {
+                        setSubmitText("Book Seat");
+                        setIsSubmit(false);
+                    }, 2000);
+                    setTimeout(() => {
+                        Navigate("/success");
+                    }, 4000);
+                }).catch((error)=>{
+                    console.log(`Error Registering: ${error}`);
+                    // toast("Error Registering", { type: "error" });
+                    setTimeout(() => {
+                        setSubmitText("Book Seat");
+                        setIsSubmit(false);
+                    }, 2000);
+                })
+            }
+            if (!navigator.onLine) {
+                console.log("App offline");
+                setTimeout(() => {
+                    setSubmitText("Book Seat");
+                    setIsSubmit(false);
+                }, 2000);
+            }
+        }
+        // window.open(PIIG_GroupLink, '_blank', 'noreferrer');
     }
 
 
@@ -32,7 +201,7 @@ function CallToAction() {
 
   return (
     <>
-        <div className="w-full relative bg-slate-200 md:h-[700px] sm:h-[600px] xs:h-[500px] h-[500px]">
+        <div className="w-full relative bg-slate-200 md:h-[900px] sm:h-[600px] xs:h-[500px] h-[500px]">
             <div className="w-full h-full">
                 <img src={backgroundPics} className="w-full h-full object-cover object-bottom opacity-40" />
             </div>
@@ -46,44 +215,93 @@ function CallToAction() {
                     and embrace a future filled with endless possibilities!
                 </div>
 
-                <div className="flex flex-col justify-center items-center w-full md:h-[200px] sm:h-[150px] 
-                    h-[200px]">
+                <div className="flex flex-col justify-center items-center 
+                    md:w-[50%] sm:w-[60%] xs:w-[60%] w-full md:h-[90%] sm:h-[450px] 
+                    h-[500px] bg-slate-600/50 my-[30px] rounded-[7px]">
 
                     <div className="font-poppins font-semibold text-center md:text-[30px] 
-                        sm:text-[30px] xs:text-[24px] text-[20px] md:max-w-[800px] sm:max-w-[700px] 
-                        xs:max-w-[500px] max-w-[320px] xs:mb-4 mb-[10px]">
+                        sm:text-[30px] xs:text-[24px] text-[20px] xs:mb-4 mb-[10px]">
                         Book your seats
                     </div>
 
-                    <div className="flex flex-col justify-between items-center w-[450px] h-[400px]">
-                        <div className="w-full h-[45px] mb-[15px]">
-                            <input 
-                                className="w-full h-full rounded-[10px] pl-[8px] outline-none 
-                                placeholder:font-sans placeholder:italic placeholder:text-slate-900"
-                                placeholder="Full Name"
-                                required />
+                    <form 
+                        className="flex flex-col justify-between items-center md:w-[80%] w-[98%] 
+                        md:h-[70%] h-[400px]"
+                        onSubmit={handleSubmit}>
+                        <div className="flex flex-col justify-between items-center md:w-full w-[98%] 
+                            md:h-full h-[300px]">
+                            <div className="w-full h-[35%] mb-[20px]">
+                                <input 
+                                    className={`w-full h-[80%] rounded-[7px] pl-[8px] outline-none 
+                                    placeholder:font-sans placeholder:italic placeholder:text-slate-500 
+                                    border-2
+                                    ${errorNameUI ? "border-red-300" : "border-white"}`}
+                                    placeholder="Full Name"
+                                    name="fullName"
+                                    value={formData.fullName}
+                                    onChange={handleChange}/>
+                                {
+                                    errors.fullName && 
+                                    <p 
+                                        className="font-sans text-red-300 w-full h-[20%] text-[15px] 
+                                        italic pl-2">
+                                        {errors.fullName}
+                                    </p>
+                                }
+                            </div>
+                            <div className="w-full h-[35%] mb-[20px]">
+                                <input 
+                                    className="w-full h-[80%] rounded-[7px] pl-[8px] outline-none 
+                                    placeholder:font-sans placeholder:italic placeholder:text-slate-500" 
+                                    placeholder="Home Address"
+                                    name="address"
+                                    value={formData.address}
+                                    onChange={handleChange}/>
+                                {
+                                    errors.address && 
+                                    <p className="font-sans text-red-300 w-full h-[20%] text-[15px] 
+                                    italic pl-2">
+                                        {errors.address}
+                                    </p>
+                                }
+                            </div>
+                            <div className="w-full h-[35%] mb-[20px]">
+                                <input 
+                                    className={`w-full h-[80%] rounded-[7px] pl-[8px] outline-none 
+                                    placeholder:font-sans placeholder:italic placeholder:text-slate-500
+                                    border-2
+                                    ${errorNumUI ? "border-red-300" : "border-white"}`}
+                                    placeholder="WhatsApp Number"
+                                    maxLength={11}
+                                    name="number"
+                                    value={formData.number}
+                                    onChange={handleNumberChange}/>
+                                {
+                                    errors.number && 
+                                    <p className="font-sans text-red-300 w-full h-[20%] text-[15px] 
+                                    italic pl-2">
+                                        {errors.number}
+                                    </p>
+                                }
+                            </div>
                         </div>
-                        <div className="w-full h-[45px] mb-[15px]">
-                            <input 
-                                className="w-full h-full rounded-[10px] pl-[8px] outline-none 
-                                placeholder:font-sans placeholder:italic placeholder:text-slate-900" 
-                                placeholder="Home Address"
-                                required />
+                        <div 
+                            className="flex flex-col justify-center items-center w-[50%] h-[55px] 
+                            rounded-[12px] text-slate-100 bg-[#c97598] mt-[40px]">
+                            {
+                                !isSubmit
+                                    ?   <button
+                                            type="submit"
+                                            className="font-sans font-semibold tracking-widest mb-[5px]
+                                            text-[22px] focus:bg-slate-500 focus:text-white">
+                                            {submitText}
+                                        </button>
+                                    :   <div className='flex justify-center items-center rotate'>
+                                            <AiOutlineLoading3Quarters size={24} color="white" />
+                                        </div>
+                            }
                         </div>
-                        <div className="w-full h-[45px] mb-[15px]">
-                            <input 
-                                className="w-full h-full rounded-[10px] pl-[8px] outline-none 
-                                placeholder:font-sans placeholder:italic placeholder:text-slate-900" 
-                                placeholder="WhatsApp Number"
-                                required />
-                        </div>
-                        <button 
-                            onClick={handleSubmit} 
-                            className="font-sans font-semibold tracking-widest w-[50%] h-[45px] rounded-[10px] 
-                            text-slate-100 bg-[#c97598] text-[22px] focus:bg-slate-500 focus:text-white mt-[20px]">
-                            Book
-                        </button>
-                    </div>
+                    </form>
                 </div>
 
                 <div className="font-sans font-semibold text-center italic md:text-[20px] 
