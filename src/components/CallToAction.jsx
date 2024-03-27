@@ -5,7 +5,7 @@ import { db } from "../../FirebaseConfig";
 import backgroundPics from "../assets/img/BG4.jpg";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 // import { whatsAppWebClient } from "whatsapp-web.js";
-import { openWhatsappLink } from "./data";
+import { sendWhatsappMessage } from "./data";
 
 // const PIIG_GroupLink = "https://chat.whatsapp.com/CJWMYLMBQkBF8WvtBrOYbr";
 
@@ -203,7 +203,7 @@ function CallToAction() {
                         Navigate("/success");
                     }, 4000);
                     setTimeout(() => {
-                        openWhatsappLink(sanitizedNumber, whatSappMessage);
+                        sendWhatsappMessage(sanitizedNumber, whatSappMessage, formData.fullName);
                     }, 6000);
                 }).catch((error)=>{
                     console.log(`Error Registering: ${error}`);

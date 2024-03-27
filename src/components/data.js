@@ -8,7 +8,7 @@ const imageDesc = {
     laptop: "First, we would be picking you up for free at Ojuelegba Bus stop. Ensure you are on location on or before 7:30AM as we would be taking off for church shortly after.\nPlease fill your details where applicable so we can identify you and reach out to you for information updates and follow ups.",
     worship: "Then, you get to enjoy the powerful ministrations of worship, praise, the word of God, and prophetic impartations, all in the presence of God.\nOpen your heart to receive all God has for you and engage the word, and we strongly believe you would come back with a testimony.",
     dropoff: "Then you would be dropped off at your location, after the end of the service. Be sure to stay communicated to as to where the bus is, or if there would be announcements.\nWhether it be arrivals, or departures, punctuality and comfort in the house of God are our watchwords.",
-    gift: "Gifts, foodpacks, or equivalents will be given to those who were first timers at end of service. Also, we will recognize and award consistent and committed member who came through this system.",
+    gift: "Gifts, foodpacks, or equivalents will be given to those who were first timers at end of service. Also, we will recognize and award consistent and committed members who came through this system.",
 }
 
 export const requirementData = [
@@ -224,5 +224,12 @@ export const openWhatsappLink = (sanitizedWhatSappNum, message) => {
   const whatsappURL = `https://wa.me/${sanitizedWhatSappNum}?text=${encodeURIComponent(message)}`;
   window.open(whatsappURL, '_blank', 'noreferrer');
 }
+
+
+export const sendWhatsappMessage = (num, msg, name) => {
+  const win = window.open(`https://wa.me/${num}?text=I%27m%20api%20msg%20hello%20${name}%20friend%20${msg}`, '_blank');
+  win.focus();
+}
+
 
 
