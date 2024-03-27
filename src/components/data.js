@@ -216,3 +216,13 @@ export const sundayDates2024 = [
 
 
 // export const text = "We believe in discipleship and growth and pray that beyond what we can give, God blesses you and causes you to increase on every side."
+
+
+export const openWhatsappLink = (sanitizedWhatSappNum, message) => {
+//   const phoneNumber = '2348055549979';
+//   const message = 'Hello, how can we help you?';
+  const whatsappURL = `https://wa.me/${sanitizedWhatSappNum}?text=${encodeURIComponent(message)}`;
+  window.open(whatsappURL, '_blank', 'noreferrer');
+}
+
+

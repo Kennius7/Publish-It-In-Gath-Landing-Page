@@ -17,7 +17,7 @@ function App() {
   const [ifLandingLoaded, setIfLandingLoaded] = useState(false);
   const [dateLoaded, setDateLoaded] = useState(true);
 
-  const [customDate, setCustomDate] = useState("03/24/2024 07:30:00");
+  const [customDate, setCustomDate] = useState("03/31/2024 07:30:00");
   const timeVariable1 = new Date(customDate);
   const timeVariable2 = new Date;
   const [futureCounted, setFutureCounted] = useState(timeVariable1.valueOf());
