@@ -26,7 +26,7 @@ function CallToAction() {
     const [errorNameUI, setErrorNameUI] = useState(false);
     const numberRegex = /[0-9]/;
     const fullNameRegex = /\s/;
-    const whatSappMessage = "Hello. How can we be of service to you?";
+    const whatSappMessage = "I want to know more about this.";
     // const docRefExample = "28lvUKGP3Mv8jvq32sU8";
 
     useEffect(() => {
@@ -108,6 +108,88 @@ function CallToAction() {
         //     return false;
         // }
     }
+
+
+    // const apiUrl = "https://shosan-computer-based-test.netlify.app/.netlify/functions/api/send-email";
+    // const homeLink = "/";
+    // const checkResultEmail = "ogbogukenny@yahoo.com";
+    // const to = auth.currentUser?.email;
+    // const captureRef = useRef(null);
+    // // @ts-ignore
+    // const studentName = auth.currentUser?.displayName.split(" ")[0];
+    // const { scoreText } = useContext(AppContext);
+    // const [imageUrl, setImageUrl] = useState("");
+    // const [printButtonText, setPrintButtonText] = useState("Print Test Score");
+    // const [mailto, setMailto] = useState<Array<string>>([]);
+    
+    // const subject = "TEST SCORE PRINTOUT";
+
+
+    // const printScore = async () => {
+    //     setPrintButtonText("Printing...");
+    //     if (captureRef.current) {
+    //         if (to === checkResultEmail) {
+    //             setMailto([to]);
+    //             // @ts-ignore
+    //         } else { setMailto([checkResultEmail, to]) }
+    //         // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //         html2canvas(captureRef.current).then((canvas: any) => {
+    //             const screenshotData = canvas.toDataURL("image/png");
+    //             // Create an anchor element to download the image
+    //             const a = document.createElement('a');
+    //             a.href = screenshotData;
+    //             a.download = 'screenshot.png';
+    //             setImageUrl(()=>screenshotData);
+    //             a.click();
+    //             setTimeout(() => setPrintButtonText("Printout Saved Locally"), 1000);
+    //             setTimeout(() => setPrintButtonText("Printing..."), 3000);
+    //         })
+
+    //         // Create an HTML email with the embedded image
+    //         const htmlEmail = `
+    //         <html>
+    //             <body>
+    //             <p>Here is a printout of your test score, ${studentName}. You scored ${scoreText}/100. Try again next time</p>
+    //             <img src="${imageUrl}" alt="Embedded Score Image" />
+    //             </body>
+    //         </html>
+    //         `;
+
+    //         const formData = new FormData();
+    //         // @ts-ignore
+    //         formData.append('to', mailto);
+    //         formData.append('subject', subject);
+    //         // formData.append('text', text);
+    //         // formData.append('attachment', attachment);
+    //         formData.append('html', htmlEmail);
+
+    //         try {
+    //             const response = await fetch(apiUrl, {
+    //               method: 'POST',
+    //               body: formData,
+    //             });
+          
+    //             if (response.ok) {
+    //               console.log('Email sent successfully');
+    //               setPrintButtonText("Print Sent to Email");
+    //               setTimeout(() => setPrintButtonText("Print Test Score"), 5000);
+    //             //   console.log(htmlEmail);
+    //             } else {
+    //               console.error('Email sending failed');
+    //               setPrintButtonText("Print to Email Failed");
+    //               setTimeout(() => setPrintButtonText("Click Here Again"), 3000);
+    //               setTimeout(() => setPrintButtonText("Print Test Score"), 7000);
+    //             }
+    //         } catch (error) {
+    //             console.error('An error occurred:', error);
+    //             setPrintButtonText("Print Error");
+    //             setTimeout(() => setPrintButtonText("Click Here Again"), 3000);
+    //             setTimeout(() => setPrintButtonText("Print Test Score"), 7000);
+    //         }
+    //     }
+    // }
+
+
 
     const SignUpTimeOut = () => {
         setTimeout(() => {

@@ -1,6 +1,22 @@
 //! == == == ==>>>Backend Code (Netlify - Production)
 
 
+import express from 'express';
+import nodemailer from 'nodemailer';
+import multer from 'multer';
+// import path from 'path';
+import cors from 'cors';
+import serverless from 'serverless-http';
+
+
+
+const app = express();
+const router = express.Router();
+app.use(cors());
+app.use(express.json());
+
+
+
 // eslint-disable-next-line no-unused-vars
 export async function handler(event, context) {
     // Calculate countdown
@@ -22,6 +38,59 @@ export async function handler(event, context) {
     };
 }
 
+const transporter = nodemailer.createTransport({
+    service: 'gmail', // e.g., 'gmail'
+    auth: {
+      user: 'shosanacodemia@gmail.com',
+      pass: 'mgkr dhey vfry zdrc',
+    },
+    tls: {
+      rejectUnauthorized: false, // Bypass SSL certificate validation
+    },
+  });
+
+// Configure file storage using multer
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.originalname);
+    },
+  });
+  
+const upload = multer({ storage });
+
+router.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+// Handle POST request to send email with attachment
+router.post('/send-email', upload.single('attachment'), (req, res) => {
+    const { to, subject, html } = req.body;
+
+    const mailOptions = {
+      from: 'shosanacodemia@gmail.com',
+      to,
+      subject,
+      html,
+    };
+  
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Email sending failed' });
+      } else {
+        console.log('Email sent: ' + info.response);
+        res.json({ success: true, message: 'Email sent successfully' });
+      }
+    });
+  });
+
+
+app.use("/.netlify/functions/api", router);
+// eslint-disable-next-line no-undef
+module.exports.handler = serverless(app);
 
 
 
@@ -60,6 +129,19 @@ export async function handler(event, context) {
 // };
 
 // export default CountdownComponent;
+
+
+
+
+
+
+
+
+
+
+
+
+// Configure the email transport
 
 
 

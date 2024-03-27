@@ -227,7 +227,7 @@ export const openWhatsappLink = (sanitizedWhatSappNum, message) => {
 
 
 export const sendWhatsappMessage = (num, msg, name) => {
-  const win = window.open(`https://wa.me/${num}?text=I%27m%20api%20msg%20hello%20${name}%20friend%20${msg}`, '_blank');
+  const win = window.open(`https://wa.me/${num}?text=My%20name%20is%20${name}.%20${msg}`, '_blank');
   win.focus();
 }
 
