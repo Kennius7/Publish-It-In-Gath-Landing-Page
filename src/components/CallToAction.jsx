@@ -329,7 +329,7 @@ function CallToAction() {
                         </div>
                         <div 
                             className={`flex justify-center items-center md:w-[50%] sm:w-[45%] xs:w-[50%] 
-                            w-[45%] md:h-[55px] sm:h-[45px] xs:h-[35px] h-[33px] xs:rounded-[12px] 
+                            w-[45%] md:h-[55px] sm:h-[45px] xs:h-[35px] h-[40px] xs:rounded-[12px] 
                             rounded-[7px] text-slate-100 
                             ${!isSubmit ? "bg-[#c97598]" : "bg-[#a85f7d]"} 
                             md:mt-[40px] xs:mt-0 mt-8`}>
