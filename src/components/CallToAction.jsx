@@ -5,7 +5,9 @@ import { db } from "../../FirebaseConfig";
 import backgroundPics from "../assets/img/BG4.jpg";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 // import { whatsAppWebClient } from "whatsapp-web.js";
-import { sendWhatsappMessage } from "./data";
+// import { sendWhatsappMessage } from "./data";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // const PIIG_GroupLink = "https://chat.whatsapp.com/CJWMYLMBQkBF8WvtBrOYbr";
 
@@ -26,7 +28,7 @@ function CallToAction() {
     const [errorNameUI, setErrorNameUI] = useState(false);
     const numberRegex = /[0-9]/;
     const fullNameRegex = /\s/;
-    const whatSappMessage = "I want to know more about this.";
+    // const whatSappMessage = "I want to know more about this.";
     // const docRefExample = "28lvUKGP3Mv8jvq32sU8";
 
     useEffect(() => {
@@ -91,22 +93,6 @@ function CallToAction() {
             ...formData,
             number: e.target.value,
         });
-    }
-
-    const verifyWhatSappNumber = async (num) => {
-        console.log("Verifying...");
-        const sanitizedNum = "234" + num.toString().slice(1)
-        console.log(sanitizedNum);
-        // const client = whatsAppWebClient.Client();
-        // const numberDetails = await client.getNumberId(sanitizedNum);
-        // if(numberDetails) {
-        //     console.log("Sending message to ", numberDetails);
-        //     /* send message */
-        //     return true;
-        // } else {
-        //     console.log(sanitizedNum, "Mobile no is not registered on Whatsapp");
-        //     return false;
-        // }
     }
 
 
@@ -234,10 +220,6 @@ function CallToAction() {
             errors.number = 'Please type in a Phone number';
             SignUpTimeOut();
         }
-        if (!verifyWhatSappNumber(formData.number)) {
-            errors.number = "Number not on Whatsapp.";
-            SignUpTimeOut();
-        }
 
         setErrors(errors);
 
@@ -256,16 +238,18 @@ function CallToAction() {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmit(true);
         console.log(formData);
+        // toast("Submitting...", { type: "info" });
         
         if (validateForm()) {
             if (navigator.onLine) {
                 const sanitizedNumber = "234" + formData.number.toString().slice(1);
                 console.log(sanitizedNumber);
                 console.log("App online");
+                toast("Booking...", { type: "info" });
                 console.log("Registering...");
                 const regDataRef = collection(db, "PIIG_Registrations");
                 addDoc(regDataRef, {
@@ -276,7 +260,7 @@ function CallToAction() {
                     regID: generateHighestId(PIIGData),
                 }).then(()=>{
                     console.log("Registration successful");
-                    // toast("Registration successful", { type: "success" });
+                    toast("Registration successful", { type: "success" });
                     setTimeout(() => {
                         setSubmitText("Book Seat");
                         setIsSubmit(false);
@@ -284,12 +268,9 @@ function CallToAction() {
                     setTimeout(() => {
                         Navigate("/success");
                     }, 4000);
-                    setTimeout(() => {
-                        sendWhatsappMessage(sanitizedNumber, whatSappMessage, formData.fullName);
-                    }, 6000);
                 }).catch((error)=>{
                     console.log(`Error Registering: ${error}`);
-                    // toast("Error Registering", { type: "error" });
+                    toast("Error Registering", { type: "error" });
                     setTimeout(() => {
                         setSubmitText("Book Seat");
                         setIsSubmit(false);
@@ -304,7 +285,6 @@ function CallToAction() {
                 }, 2000);
             }
         }
-        // window.open(PIIG_GroupLink, '_blank', 'noreferrer');
     }
 
 

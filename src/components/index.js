@@ -6,6 +6,7 @@ export { default as Intro } from "./Intro";
 export { default as SundayExpectation } from "./SundayExpectation";
 export { default as LandingPage } from "./LandingPage";
 export { default as CallToAction } from "./CallToAction";
+export { default as FetchTest } from "./FetchTest";
 // export { default as Register } from "./Register";
 // export { default as PaymentPage } from "./PaymentPage";
 // export { default as UserBoard } from "./UserBoard";

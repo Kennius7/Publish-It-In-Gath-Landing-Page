@@ -87,7 +87,9 @@ app.post('/send-email', upload.single('attachment'), (req, res) => {
     });
   });
 
-
+app.get("/test", (req, res)=>{
+  res.status(200).json({success: true, msg: "Test Checked"});
+})
 
 
 app.listen(PORT, () => {

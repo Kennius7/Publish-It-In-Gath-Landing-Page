@@ -6,7 +6,7 @@ import nodemailer from 'nodemailer';
 import multer from 'multer';
 // import path from 'path';
 import cors from 'cors';
-import serverless from 'serverless-http';
+// import serverless from 'serverless-http';
 
 
 
@@ -17,40 +17,19 @@ app.use(express.json());
 
 
 
-// eslint-disable-next-line no-unused-vars
-export async function handler(event, context) {
-    // Calculate countdown
-    const calculateCountdown = () => {
-        // Logic to calculate the countdown based on your requirements
-        const currentDate = new Date();
-        const futureDate = new Date("2024-12-31T23:59:59");
-        const countdownSeconds = Math.floor((futureDate - currentDate) / 1000);
-        return countdownSeconds;
-    };
-
-    // Get countdown
-    const countdown = calculateCountdown();
-
-    // Return countdown data
-    return {
-        statusCode: 200,
-        body: JSON.stringify({ countdown })
-    };
-}
-
-const transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     service: 'gmail', // e.g., 'gmail'
     auth: {
-      user: 'shosanacodemia@gmail.com',
-      pass: 'mgkr dhey vfry zdrc',
-    },
-    tls: {
-      rejectUnauthorized: false, // Bypass SSL certificate validation
-    },
+        user: 'shosanacodemia@gmail.com',
+        pass: 'mgkr dhey vfry zdrc',
+      },
+      tls: {
+        rejectUnauthorized: false, // Bypass SSL certificate validation
+      },
   });
-
-// Configure file storage using multer
-const storage = multer.diskStorage({
+    
+  // Configure file storage using multer
+  const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, 'uploads/');
     },
@@ -58,24 +37,24 @@ const storage = multer.diskStorage({
       cb(null, file.originalname);
     },
   });
+    
+  const upload = multer({ storage });
   
-const upload = multer({ storage });
-
-router.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
-
-// Handle POST request to send email with attachment
-router.post('/send-email', upload.single('attachment'), (req, res) => {
+  router.get('/', (req, res) => {
+    res.send('Hello, World!');
+  });
+  
+  // Handle POST request to send email with attachment
+  router.post('/send-email', upload.single('attachment'), (req, res) => {
     const { to, subject, html } = req.body;
-
+  
     const mailOptions = {
       from: 'shosanacodemia@gmail.com',
       to,
       subject,
       html,
-    };
-  
+    }
+    
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error(error);
@@ -88,9 +67,30 @@ router.post('/send-email', upload.single('attachment'), (req, res) => {
   });
 
 
-app.use("/.netlify/functions/api", router);
-// eslint-disable-next-line no-undef
-module.exports.handler = serverless(app);
+  router.get("/countdown", (req, res) => {
+
+    const calculateCountdown = () => {
+      // Logic to calculate the countdown based on your requirements
+      const currentDate = new Date();
+      const futureDate = new Date("2024-12-31T23:59:59");
+      const countdownSeconds = Math.floor((futureDate - currentDate) / 1000);
+      return countdownSeconds;
+    };
+  
+    const countdown = calculateCountdown();
+
+    res.status(200).json({ success: true, data: countdown });
+
+  })
+
+  router.get("/hello", (req, res)=>{
+    res.status(200).send("Hello world");
+  })
+
+  app.use("/.netlify/functions/api", router);
+
+  // eslint-disable-next-line no-undef
+  exports.handler = serverless(app);
 
 
 
