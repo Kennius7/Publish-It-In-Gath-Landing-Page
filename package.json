@@ -13,7 +13,9 @@
     "postinstall": "patch-package",
     "netlify:start": "netlify-lambda serve functions",
     "netlify:build": "netlify-lambda build functions",
-    "net:build": "netlify deploy --prod"
+    "net:build": "netlify build",
+    "net:deploy": "netlify deploy --prod",
+    "net:both": "concurrently \"netlify deploy --prod\" \"netlify build\""
   },
   "dependencies": {
     "@splidejs/react-splide": "^0.7.12",

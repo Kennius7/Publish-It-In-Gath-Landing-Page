@@ -1,20 +1,17 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { Timestamp, addDoc, collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from "../../FirebaseConfig";
 import backgroundPics from "../assets/img/BG4.jpg";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-// import { whatsAppWebClient } from "whatsapp-web.js";
-// import { sendWhatsappMessage } from "./data";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-// const PIIG_GroupLink = "https://chat.whatsapp.com/CJWMYLMBQkBF8WvtBrOYbr";
+import axios from "axios";
 
 
 
 function CallToAction() {
-    const Navigate = useNavigate();
+    // const Navigate = useNavigate();
     const [formData, setFormData] = useState({
         fullName: '',
         address: '',
@@ -26,8 +23,12 @@ function CallToAction() {
     const [PIIGData, setPIIGData] = useState([]);
     const [errorNumUI, setErrorNumUI] = useState(false);
     const [errorNameUI, setErrorNameUI] = useState(false);
+    // const mailto = ["shosanacodemia@gmail.com"];
+    const subject = "PIIG Seat Reservations";
     const numberRegex = /[0-9]/;
     const fullNameRegex = /\s/;
+    // const apiUrlProd = "https://publishitingath.netlify.app/.netlify/functions/api/send-email";
+    const apiUrlDev = "http://localhost:3001/send-email";
     // const whatSappMessage = "I want to know more about this.";
     // const docRefExample = "28lvUKGP3Mv8jvq32sU8";
 
@@ -70,14 +71,6 @@ function CallToAction() {
             });
             return
         }
-        // if (formData.number.length === 11) {
-        //     setErrorNumUI(false);
-        //     errors.number = '';
-        //     setFormData({
-        //         ...formData,
-        //         number: e.target.value,
-        //     });
-        // }
         if (formData.number.length > 10) {
             setErrorNumUI(true);
             errors.number = 'Number must be eleven (11) digits';
@@ -94,88 +87,6 @@ function CallToAction() {
             number: e.target.value,
         });
     }
-
-
-    // const apiUrl = "https://shosan-computer-based-test.netlify.app/.netlify/functions/api/send-email";
-    // const homeLink = "/";
-    // const checkResultEmail = "ogbogukenny@yahoo.com";
-    // const to = auth.currentUser?.email;
-    // const captureRef = useRef(null);
-    // // @ts-ignore
-    // const studentName = auth.currentUser?.displayName.split(" ")[0];
-    // const { scoreText } = useContext(AppContext);
-    // const [imageUrl, setImageUrl] = useState("");
-    // const [printButtonText, setPrintButtonText] = useState("Print Test Score");
-    // const [mailto, setMailto] = useState<Array<string>>([]);
-    
-    // const subject = "TEST SCORE PRINTOUT";
-
-
-    // const printScore = async () => {
-    //     setPrintButtonText("Printing...");
-    //     if (captureRef.current) {
-    //         if (to === checkResultEmail) {
-    //             setMailto([to]);
-    //             // @ts-ignore
-    //         } else { setMailto([checkResultEmail, to]) }
-    //         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    //         html2canvas(captureRef.current).then((canvas: any) => {
-    //             const screenshotData = canvas.toDataURL("image/png");
-    //             // Create an anchor element to download the image
-    //             const a = document.createElement('a');
-    //             a.href = screenshotData;
-    //             a.download = 'screenshot.png';
-    //             setImageUrl(()=>screenshotData);
-    //             a.click();
-    //             setTimeout(() => setPrintButtonText("Printout Saved Locally"), 1000);
-    //             setTimeout(() => setPrintButtonText("Printing..."), 3000);
-    //         })
-
-    //         // Create an HTML email with the embedded image
-    //         const htmlEmail = `
-    //         <html>
-    //             <body>
-    //             <p>Here is a printout of your test score, ${studentName}. You scored ${scoreText}/100. Try again next time</p>
-    //             <img src="${imageUrl}" alt="Embedded Score Image" />
-    //             </body>
-    //         </html>
-    //         `;
-
-    //         const formData = new FormData();
-    //         // @ts-ignore
-    //         formData.append('to', mailto);
-    //         formData.append('subject', subject);
-    //         // formData.append('text', text);
-    //         // formData.append('attachment', attachment);
-    //         formData.append('html', htmlEmail);
-
-    //         try {
-    //             const response = await fetch(apiUrl, {
-    //               method: 'POST',
-    //               body: formData,
-    //             });
-          
-    //             if (response.ok) {
-    //               console.log('Email sent successfully');
-    //               setPrintButtonText("Print Sent to Email");
-    //               setTimeout(() => setPrintButtonText("Print Test Score"), 5000);
-    //             //   console.log(htmlEmail);
-    //             } else {
-    //               console.error('Email sending failed');
-    //               setPrintButtonText("Print to Email Failed");
-    //               setTimeout(() => setPrintButtonText("Click Here Again"), 3000);
-    //               setTimeout(() => setPrintButtonText("Print Test Score"), 7000);
-    //             }
-    //         } catch (error) {
-    //             console.error('An error occurred:', error);
-    //             setPrintButtonText("Print Error");
-    //             setTimeout(() => setPrintButtonText("Click Here Again"), 3000);
-    //             setTimeout(() => setPrintButtonText("Print Test Score"), 7000);
-    //         }
-    //     }
-    // }
-
-
 
     const SignUpTimeOut = () => {
         setTimeout(() => {
@@ -238,6 +149,59 @@ function CallToAction() {
         }
     }
 
+    const sendEmailForm = async () => {
+        const htmlEmail = `
+            <html>
+                <body>
+                <p>${formData.fullName} just booked a seat for the oncoming Sunday service.</p>
+                <p>His/Her WhatSapp number is ${formData.number}</p>
+                <p>His/Her address is ${formData.address}</p>
+                </body>
+            </html>
+        `;
+        const emailFormData = new FormData();
+        // emailFormData.append('to', mailto);
+        emailFormData.append('subject', subject);
+        // emailFormData.append('text', text);
+        // emailFormData.append('attachment', attachment);
+        emailFormData.append('html', htmlEmail);
+
+        try {
+            await axios.post(apiUrlDev, emailFormData)
+            .then(()=>{
+                console.log('Email sent successfully');
+                console.log(emailFormData);
+                setSubmitText("Registered");
+                toast("Registration successful", { type: "success" });
+                setTimeout(() => {
+                    setSubmitText("Book Seat");
+                    setIsSubmit(false);
+                }, 2000);
+                // setTimeout(() => {
+                //     Navigate("/success");
+                // }, 4000);
+            }).catch((error)=>{
+                setIsSubmit(false);
+                console.error(`Email sending failed: ${error}`);
+                setSubmitText("Registration Failed");
+                toast("Error: Registration Failed", { type: "error" });
+                setTimeout(() => setSubmitText("Try Again"), 3000);
+                setTimeout(() => setSubmitText("Book Seat"), 7000);
+            })
+        } catch (error) {
+            setIsSubmit(false);
+            console.log(`An error occurred: ${error}`);
+            setSubmitText("Booking failed");
+            toast("Error: Booking failed", { type: "error" });
+            setTimeout(() => setSubmitText("Try Again"), 3000);
+            setTimeout(() => setSubmitText("Book Seat"), 7000);
+        }
+    }
+
+
+
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmit(true);
@@ -259,21 +223,13 @@ function CallToAction() {
                     createdAt: Timestamp.now().toDate(),
                     regID: generateHighestId(PIIGData),
                 }).then(()=>{
-                    console.log("Registration successful");
-                    toast("Registration successful", { type: "success" });
-                    setTimeout(() => {
-                        setSubmitText("Book Seat");
-                        setIsSubmit(false);
-                    }, 2000);
-                    setTimeout(() => {
-                        Navigate("/success");
-                    }, 4000);
+                    sendEmailForm();
                 }).catch((error)=>{
                     console.log(`Error Registering: ${error}`);
                     toast("Error Registering", { type: "error" });
                     setTimeout(() => {
-                        setSubmitText("Book Seat");
                         setIsSubmit(false);
+                        setSubmitText("Book Seat");
                     }, 2000);
                 })
             }

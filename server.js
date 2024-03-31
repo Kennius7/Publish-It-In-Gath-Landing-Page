@@ -3,8 +3,6 @@
 import dotenv from "dotenv";
 import express from "express";
 import nodemailer from 'nodemailer';
-import multer from 'multer';
-// import path from 'path';
 import cors from 'cors';
 
 
@@ -13,13 +11,15 @@ const app = express();
 app.use(cors());
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT;
-// eslint-disable-next-line no-undef
-console.log(process.env.NODE_ENV);
 app.use(express.json());
 
 
 
 
+
+app.get("/test", (req, res)=>{
+  res.status(200).json({success: true, msg: "Test Checked"});
+})
 
 // Calculate countdown function
 function calculateCountdown() {
@@ -33,7 +33,7 @@ function calculateCountdown() {
 // API endpoint to serve countdown data
 app.get('/countdown', (req, res) => {
     const countdown = calculateCountdown();
-    res.json({ countdown });
+    res.status(200).json({ countdown: countdown });
 });
 
 
@@ -49,51 +49,46 @@ const transporter = nodemailer.createTransport({
     },
   });
 
-// Configure file storage using multer
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'uploads/');
-    },
-    filename: (req, file, cb) => {
-      cb(null, file.originalname);
-    },
-  });
-  
-const upload = multer({ storage });
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 
 // Handle POST request to send email with attachment
-app.post('/send-email', upload.single('attachment'), (req, res) => {
-    const { to, subject, html } = req.body;
+app.post('/send-email', (req, res) => {
+    const { subject, html } = req.body;
   
     const mailOptions = {
-      from: 'Shosan Code Hub',
-      to,
-      subject,
-      html,
+      from: 'shosanacodemia@gmail.com',
+      to: 'shosanacodemia@gmail.com',
+      subject: subject,
+      html: html,
     };
   
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error(error);
-        res.status(500).json({ success: false, message: 'Email sending failed' });
+        res.status(500).json({ success: false, message: error });
       } else {
         console.log('Email sent: ' + info.response);
-        res.json({ success: true, message: 'Email sent successfully' });
+        res.status(200).json({ success: true, message: 'Email sent successfully' });
       }
     });
   });
 
-app.get("/test", (req, res)=>{
-  res.status(200).json({success: true, msg: "Test Checked"});
-})
 
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
+
+
+
+// {
+//   "from": "shosanacodemia@gmail.com",
+//   "to": "shosanacodemia@gmail.com",
+//   "subject": "Testing",
+//   "html": "Hello All!"
+// }
 
