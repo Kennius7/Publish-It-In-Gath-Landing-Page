@@ -78,7 +78,7 @@ app.use(express.json());
 
 
   // eslint-disable-next-line no-undef
-  exports.handler = serverless(app);
+  export const handler = serverless(app);
 
 
 

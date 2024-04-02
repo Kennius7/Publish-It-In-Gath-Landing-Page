@@ -1,9 +1,8 @@
-//! == == == ==>>>Backend Code (Development)
-
 import dotenv from "dotenv";
 import express from "express";
 import nodemailer from 'nodemailer';
 import cors from 'cors';
+import path from "path";
 
 
 dotenv.config();
@@ -12,7 +11,18 @@ app.use(cors());
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT;
 app.use(express.json());
+// eslint-disable-next-line no-undef
+app.use(express.static(path.join(__dirname, "build")));
 
+
+const envObject = {
+  // eslint-disable-next-line no-undef
+  firebaseApiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  // eslint-disable-next-line no-undef
+  firebaseMsgSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  // eslint-disable-next-line no-undef
+  firebaseAppId: process.env.REACT_APP_FIREBASE_APP_ID
+}
 
 
 
@@ -76,6 +86,11 @@ app.post('/send-email', (req, res) => {
     });
   });
 
+
+app.get("/processvar", (req, res)=>{
+  // eslint-disable-next-line no-undef
+  res.status(200).json({ success: true, msg: "Success", data: envObject });
+})
 
 
 app.listen(PORT, () => {

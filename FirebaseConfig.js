@@ -1,17 +1,35 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import axios from "axios";
+
+
+let envData = {};
+
+const fetchEnvConfig = async () => {
+  const response = await axios.get("http://localhost:3001/processvar")
+  .then(()=>{
+    envData = response.data;
+    console.log(response.data);
+    console.log(response.success, response.msg);
+  })
+  .catch((error)=>{
+    console.error(`Error found: ${error}`);
+  })
+}
+
+fetchEnvConfig()
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBOR4CoY1QAV8KIq38soFH7E1jZeSYX5eY",
+  // eslint-disable-next-line no-undef
+  apiKey: envData.REACT_APP_FIREBASE_API_KEY,
   authDomain: "shosan-online-class.firebaseapp.com",
   projectId: "shosan-online-class",
   storageBucket: "shosan-online-class.appspot.com",
-  messagingSenderId: "537141144686",
-  appId: "1:537141144686:web:b4292d30a29ffd46cb8a7f"
+  // eslint-disable-next-line no-undef
+  messagingSenderId: envData.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  // eslint-disable-next-line no-undef
+  appId: envData.REACT_APP_FIREBASE_APP_ID
 };
 
 // Initialize Firebase

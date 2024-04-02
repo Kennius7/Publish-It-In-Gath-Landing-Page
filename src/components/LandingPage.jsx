@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { mainContext } from "../context/mainContext";
-import { Home, Intro, SundayExpectation, CallToAction, FetchTest } from "./index";
+import { Home, Intro, SundayExpectation, CallToAction } from "./index";
 // import Home from "./Home";
 
 
@@ -27,7 +27,7 @@ function LandingPage() {
           <Intro/>
           <SundayExpectation/>
           <CallToAction/>
-          <FetchTest/>
+          {/* <FetchTest/> */}
           {/* <CourseList/>
           <BulletPoints/> */}
         </div>
