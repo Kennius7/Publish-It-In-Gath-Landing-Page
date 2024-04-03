@@ -27,8 +27,8 @@ function CallToAction() {
     const subject = "PIIG Seat Reservations";
     const numberRegex = /[0-9]/;
     const fullNameRegex = /\s/;
-    // const apiUrlProd = "https://publishitingath.netlify.app/.netlify/functions/api/send-email";
-    const apiUrlDev = "http://localhost:3001/send-email";
+    const apiUrlProd = "https://publishitingath.netlify.app/.netlify/functions/api/send-email";
+    // const apiUrlDev = "http://localhost:3001/send-email";
     // const whatSappMessage = "I want to know more about this.";
     // const docRefExample = "28lvUKGP3Mv8jvq32sU8";
 
@@ -167,7 +167,7 @@ function CallToAction() {
         emailFormData.append('html', htmlEmail);
 
         try {
-            await axios.post(apiUrlDev, emailFormData)
+            await axios.post(apiUrlProd, emailFormData)
             .then(()=>{
                 console.log('Email sent successfully');
                 console.log(emailFormData);
