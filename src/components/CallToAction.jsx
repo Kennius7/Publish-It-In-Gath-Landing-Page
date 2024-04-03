@@ -25,6 +25,7 @@ function CallToAction() {
     const [errorNameUI, setErrorNameUI] = useState(false);
     // const mailto = ["shosanacodemia@gmail.com"];
     const subject = "PIIG Seat Reservations";
+    const timeout = 30000;
     const numberRegex = /[0-9]/;
     const fullNameRegex = /\s/;
     const apiUrlProd = "https://publishitingath.netlify.app/.netlify/functions/api/send-email";
@@ -167,7 +168,7 @@ function CallToAction() {
         emailFormData.append('html', htmlEmail);
 
         try {
-            await axios.post(apiUrlProd, emailFormData)
+            await axios.post(apiUrlProd, emailFormData, { timeout })
             .then(()=>{
                 console.log('Email sent successfully');
                 console.log(emailFormData);
@@ -182,11 +183,19 @@ function CallToAction() {
                 // }, 4000);
             }).catch((error)=>{
                 setIsSubmit(false);
-                console.error(`Email sending failed: ${error}`);
-                setSubmitText("Registration Failed");
-                toast("Error: Registration Failed", { type: "error" });
-                setTimeout(() => setSubmitText("Try Again"), 3000);
-                setTimeout(() => setSubmitText("Book Seat"), 7000);
+                if (error.code === "ECONNABORTED") {
+                    console.error(`Request Timed Out: ${error}`);
+                    setSubmitText("Took Too Long");
+                    toast("Error: Request Timed Out. Check your network and try again.", { type: "warning" });
+                    setTimeout(() => setSubmitText("Try Again"), 3000);
+                    setTimeout(() => setSubmitText("Book Seat"), 7000);
+                } else {
+                    console.error(`Email sending failed: ${error}`);
+                    setSubmitText("Registration Failed");
+                    toast("Error: Registration Failed", { type: "error" });
+                    setTimeout(() => setSubmitText("Try Again"), 3000);
+                    setTimeout(() => setSubmitText("Book Seat"), 7000);
+                }
             })
         } catch (error) {
             setIsSubmit(false);
@@ -235,6 +244,7 @@ function CallToAction() {
             }
             if (!navigator.onLine) {
                 console.log("App offline");
+                toast("It seems you're offline", { type: "warning" });
                 setTimeout(() => {
                     setSubmitText("Book Seat");
                     setIsSubmit(false);

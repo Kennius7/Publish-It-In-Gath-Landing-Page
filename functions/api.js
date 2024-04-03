@@ -10,6 +10,12 @@ const router = express.Router();
 app.use(cors());
 app.use(express.json());
 
+app.use((req, res, next)=>{
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
+  next();
+})
 
 
   const transporter = nodemailer.createTransport({
@@ -23,19 +29,14 @@ app.use(express.json());
       },
   });
 
-
-  router.get('/', (req, res) => {
-    res.status(200).json({ success: true, msg: 'Hello, World!'});
-  });
-
   router.post('/send-email', (req, res) => {
     const { subject, html } = req.body;
   
     const mailOptions = {
       from: 'shosanacodemia@gmail.com',
       to: 'shosanacodemia@gmail.com',
-      subject,
-      html,
+      subject: subject,
+      html: html,
     }
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -47,6 +48,7 @@ app.use(express.json());
         res.status(200).json({ success: true, message: 'Email sent successfully' });
       }
     });
+
   });
 
   router.get("/countdown", (req, res) => {
@@ -65,19 +67,9 @@ app.use(express.json());
 
   })
 
-  router.get("/hello", (req, res)=>{
-    res.status(200).send("Hello world");
-  })
-
-  router.get("/test", (req, res)=>{
-    res.status(200).json({success: true, msg: "Test Checked"});
-  })
-
   app.use("/.netlify/functions/api", router);
 
 
-
-  // eslint-disable-next-line no-undef
   export const handler = serverless(app);
 
 
