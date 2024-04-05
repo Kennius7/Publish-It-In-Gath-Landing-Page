@@ -48,7 +48,7 @@ function App() {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
-  const apiUrlProd = "https://publishitingath.netlify.app/.netlify/functions/api/countdown";
+  const apiUrlProd = "https://piig-server.netlify.app/.netlify/functions/api/countdown";
   // const apiUrlDev = "http://localhost:3001/countdown";
   const fetchTimeout = 3000;
 

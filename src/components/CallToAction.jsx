@@ -23,12 +23,11 @@ function CallToAction() {
     const [PIIGData, setPIIGData] = useState([]);
     const [errorNumUI, setErrorNumUI] = useState(false);
     const [errorNameUI, setErrorNameUI] = useState(false);
-    // const mailto = ["shosanacodemia@gmail.com"];
-    const subject = "PIIG Seat Reservations";
     const numberRegex = /[0-9]/;
     const fullNameRegex = /\s/;
-    const apiUrlProd = "https://publishitingath.netlify.app/.netlify/functions/api/send-email";
+    const apiUrlProd = "https://piig-server.netlify.app/.netlify/functions/api/send-email";
     // const apiUrlDev = "http://localhost:3001/send-email";
+    const timeout = 30000;
 
 
     useEffect(() => {
@@ -148,52 +147,32 @@ function CallToAction() {
         }
     }
 
-    const sendEmailForm = async () => {
-        const htmlEmail = `
-            <html>
-                <body>
-                <p>${formData.fullName} just booked a seat for the oncoming Sunday service.</p>
-                <p>His/Her WhatSapp number is ${formData.number}</p>
-                <p>His/Her address is ${formData.address}</p>
-                </body>
-            </html>
-        `;
-        const emailFormData = new FormData();
-        // emailFormData.append('to', mailto);
-        emailFormData.append('subject', subject);
-        // emailFormData.append('text', text);
-        // emailFormData.append('attachment', attachment);
-        emailFormData.append('html', htmlEmail);
 
+
+    const sendEmailForm = async () => {
         try {
-            await axios.post(apiUrlProd, emailFormData)
-            .then(()=>{
-                console.log('Email sent successfully');
-                console.log(emailFormData);
-                setSubmitText("Registered");
-                toast("Registration successful", { type: "success" });
-                setTimeout(() => {
-                    setSubmitText("Book Seat");
-                    setIsSubmit(false);
-                }, 2000);
-                // setTimeout(() => {
-                //     Navigate("/success");
-                // }, 4000);
-            }).catch((error)=>{
+            const response = await axios.post(apiUrlProd, formData, { timeout })
+            console.log(`${response.data.emailMessage}`);
+            setIsSubmit(false);
+            setSubmitText("Registered");
+            toast(response.data.formMessage, { type: "success" });
+            setTimeout(() => setSubmitText("Book Seat"), 4000);
+        } catch (error) {
+            if (error.code === "ECONNABORTED") {
+                setIsSubmit(false);
+                console.error(`Sending took too long: ${error}`);
+                setSubmitText("Took Too Long");
+                toast(error.data.timeoutMessage, { type: "error" });
+                setTimeout(() => setSubmitText("Try Again"), 3000);
+                setTimeout(() => setSubmitText("Book Seat"), 7000);
+            } else {
                 setIsSubmit(false);
                 console.error(`Email sending failed: ${error}`);
                 setSubmitText("Registration Failed");
-                toast("Error: Registration Failed", { type: "error" });
+                toast(error.data.errorMessage, { type: "error" });
                 setTimeout(() => setSubmitText("Try Again"), 3000);
                 setTimeout(() => setSubmitText("Book Seat"), 7000);
-            })
-        } catch (error) {
-            setIsSubmit(false);
-            console.log(`An error occurred: ${error}`);
-            setSubmitText("Booking failed");
-            toast("Error: Booking failed", { type: "error" });
-            setTimeout(() => setSubmitText("Try Again"), 3000);
-            setTimeout(() => setSubmitText("Book Seat"), 7000);
+            }
         }
     }
 
