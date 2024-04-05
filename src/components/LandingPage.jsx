@@ -1,5 +1,4 @@
-import { Home, Intro, SundayExpectation, CallToAction } from "./index";
-// import Home from "./Home";
+import { Home, Intro, SundayExpectation, CallToAction, AdminBar } from "./index";
 
 
 function LandingPage() {
@@ -11,9 +10,7 @@ function LandingPage() {
         <Intro/>
         <SundayExpectation/>
         <CallToAction/>
-        {/* <FetchTest/> */}
-        {/* <CourseList/>
-        <BulletPoints/> */}
+        <AdminBar/>
       </div>
     </>
   )

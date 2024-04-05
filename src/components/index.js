@@ -9,7 +9,8 @@ export { default as CallToAction } from "./CallToAction";
 export { default as FetchTest } from "./FetchTest";
 export { default as RegBackend } from "./RegBackend";
 export { default as SuccessPage } from "./SuccessPage";
-// export { default as UserBoard } from "./UserBoard";
+export { default as BlankPage } from "./BlankPage";
+export { default as AdminBar } from "./AdminBar";
 // export { default as Login } from "./Login";
 // export { default as SignUp } from "./SignUp";
 

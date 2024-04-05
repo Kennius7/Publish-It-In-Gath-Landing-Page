@@ -14,6 +14,7 @@ function App() {
   const [menuVisible, setMenuVisible] = useState(false);
   const [ifLandingLoaded, setIfLandingLoaded] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   const [DB_SavedDate, setDB_SavedDate] = useState("");
   const deadlineVariable = new Date(DB_SavedDate);
@@ -127,7 +128,7 @@ function App() {
     <>
       <mainContext.Provider 
         value={{ hours, minutes, seconds, days, futureDate, active, setActive, menuVisible, setMenuVisible, 
-        ifLandingLoaded, setIfLandingLoaded, examTimeLimit }}>
+        ifLandingLoaded, setIfLandingLoaded, examTimeLimit, isAuthenticated, setIsAuthenticated }}>
         <BrowserRouter>
           <ScrollToTop />
           <Routes>
