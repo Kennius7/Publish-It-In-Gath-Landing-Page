@@ -23,7 +23,8 @@ function CallToAction() {
     const [PIIGData, setPIIGData] = useState([]);
     const [errorNumUI, setErrorNumUI] = useState(false);
     const [errorNameUI, setErrorNameUI] = useState(false);
-    const timeout = 40000;
+    // const mailto = ["shosanacodemia@gmail.com"];
+    const subject = "PIIG Seat Reservations";
     const numberRegex = /[0-9]/;
     const fullNameRegex = /\s/;
     const apiUrlProd = "https://publishitingath.netlify.app/.netlify/functions/api/send-email";
@@ -148,30 +149,51 @@ function CallToAction() {
     }
 
     const sendEmailForm = async () => {
+        const htmlEmail = `
+            <html>
+                <body>
+                <p>${formData.fullName} just booked a seat for the oncoming Sunday service.</p>
+                <p>His/Her WhatSapp number is ${formData.number}</p>
+                <p>His/Her address is ${formData.address}</p>
+                </body>
+            </html>
+        `;
+        const emailFormData = new FormData();
+        // emailFormData.append('to', mailto);
+        emailFormData.append('subject', subject);
+        // emailFormData.append('text', text);
+        // emailFormData.append('attachment', attachment);
+        emailFormData.append('html', htmlEmail);
+
         try {
-            const postResponse = await axios.post(apiUrlProd, formData, { timeout });
-            console.log(`msg: ${postResponse.data.emailMessage}, check data: ${postResponse.data.check}`);
-            setSubmitText("Registered");
-            toast(postResponse.data.formMessage, { type: "success" });
-            setTimeout(() => {
-                setSubmitText("Book Seat");
+            await axios.post(apiUrlProd, emailFormData)
+            .then(()=>{
+                console.log('Email sent successfully');
+                console.log(emailFormData);
+                setSubmitText("Registered");
+                toast("Registration successful", { type: "success" });
+                setTimeout(() => {
+                    setSubmitText("Book Seat");
+                    setIsSubmit(false);
+                }, 2000);
+                // setTimeout(() => {
+                //     Navigate("/success");
+                // }, 4000);
+            }).catch((error)=>{
                 setIsSubmit(false);
-            }, 2000);
-        } catch (error) {
-            setIsSubmit(false);
-            if (error.code === "ECONNABORTED") {
-                console.error(`Request Timed Out: ${error}`);
-                setSubmitText("Took Too Long");
-                toast(error.data.timeoutMessage, { type: "warning" });
-                setTimeout(() => setSubmitText("Try Again"), 3000);
-                setTimeout(() => setSubmitText("Book Seat"), 7000);
-            } else {
                 console.error(`Email sending failed: ${error}`);
                 setSubmitText("Registration Failed");
-                toast(error.data.errorMessage, { type: "error" });
+                toast("Error: Registration Failed", { type: "error" });
                 setTimeout(() => setSubmitText("Try Again"), 3000);
                 setTimeout(() => setSubmitText("Book Seat"), 7000);
-            }
+            })
+        } catch (error) {
+            setIsSubmit(false);
+            console.log(`An error occurred: ${error}`);
+            setSubmitText("Booking failed");
+            toast("Error: Booking failed", { type: "error" });
+            setTimeout(() => setSubmitText("Try Again"), 3000);
+            setTimeout(() => setSubmitText("Book Seat"), 7000);
         }
     }
 

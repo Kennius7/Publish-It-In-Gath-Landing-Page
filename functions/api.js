@@ -47,8 +47,8 @@ app.use((req, res, next)=>{
     const mailOptions = {
       from: 'shosanacodemia@gmail.com',
       to: 'shosanacodemia@gmail.com',
-      subject: subject,
-      html: htmlEmail,
+      subject,
+      html,
     }
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -69,35 +69,37 @@ app.use((req, res, next)=>{
         });
       }
     });
-
   });
 
+  router.get("/countdown", (req, res) => {
 
-  router.get('/countdown', async (req, res) => {
-    const getDateRef = doc(db, "Current-Date", "date_document");
-    const fetchDateData = await getDoc(getDateRef);
-    if (fetchDateData.data().date) {
-      res.status(200).json({ success: true, date: fetchDateData.data().date.toString() });
-    } else {
-      res.status(404).json({ success: false, msg: "Date not found" });
-    }
-  });
+    const calculateCountdown = () => {
+      // Logic to calculate the countdown based on your requirements
+      const currentDate = new Date();
+      const futureDate = new Date("2024-12-31T23:59:59");
+      const countdownSeconds = Math.floor((futureDate - currentDate) / 1000);
+      return countdownSeconds;
+    };
   
-  router.post('/countdown', async (req, res)=>{
-    const updatedDate = req.body.date;
-    await setDoc(doc(db, "Current-Date", "date_document"), { date: updatedDate })
-    .then(()=>{
-      res.status(200).json({ success: true, msg: "Date Updated Successfully" })
-    })
-    .catch((error)=>{
-      res.status(500).json({ success: false, msg: `Error updating Date: ${error}` })
-    })
+    const countdown = calculateCountdown();
+
+    res.status(200).json({ success: true, data: countdown });
+
   })
 
+  router.get("/hello", (req, res)=>{
+    res.status(200).send("Hello world");
+  })
 
+  router.get("/test", (req, res)=>{
+    res.status(200).json({success: true, msg: "Test Checked"});
+  })
 
   app.use("/.netlify/functions/api", router);
 
+
+
+  // eslint-disable-next-line no-undef
   export const handler = serverless(app);
 
 
