@@ -1,3 +1,15 @@
 [build]
   functions="functions-build"
 
+[[headers]]
+  for = "/*"
+    [headers.values]
+      Access-Control-Allow-Origin = "*"
+
+[[redirects]]
+  from = "/*"
+  to = "https://publishitingath.netlify.app/.netlify/functions/api/:splat"
+  status = 200
+
+
+

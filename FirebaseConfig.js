@@ -1,23 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-// import axios from "axios";
-
-
-// let envData = {};
-
-// const fetchEnvConfig = async () => {
-//   const response = await axios.get("http://localhost:3001/processvar")
-//   .then(()=>{
-//     envData = response.data;
-//     console.log(response.data);
-//     console.log(response.success, response.msg);
-//   })
-//   .catch((error)=>{
-//     console.error(`Error found: ${error}`);
-//   })
-// }
-
-// fetchEnvConfig()
 
 
 

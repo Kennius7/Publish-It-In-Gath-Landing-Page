@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { mainContext } from "./context/mainContext";
-import LandingPage from "./components/LandingPage";
-import SuccessPage from "./components/SuccessPage";
 import ScrollToTop from "./ScrollToTop";
 import { monthFunct, dayFunct, hourFunct, minuteFunct, secFunct } from "./components/data";
-import { getDoc, doc, setDoc } from 'firebase/firestore';
-import { db } from "../FirebaseConfig";
+import axios from "axios";
+import { RegBackend, LandingPage, SuccessPage } from "./components";
 
 
 
@@ -15,13 +13,13 @@ function App() {
   const [active, setActive] = useState("Home");
   const [menuVisible, setMenuVisible] = useState(false);
   const [ifLandingLoaded, setIfLandingLoaded] = useState(false);
-  const [dateLoaded, setDateLoaded] = useState(true);
+  const [isFetched, setIsFetched] = useState(false);
 
-  const [customDate, setCustomDate] = useState("04/07/2024 07:30:00");
-  const timeVariable1 = new Date(customDate);
-  const timeVariable2 = new Date;
-  const [futureCounted, setFutureCounted] = useState(timeVariable1.valueOf());
-  const timeTodayCounted = timeVariable2.valueOf();
+  const [DB_SavedDate, setDB_SavedDate] = useState("");
+  const deadlineVariable = new Date(DB_SavedDate);
+  const todayVariable = new Date;
+  let futureCounted = deadlineVariable.valueOf();
+  const timeTodayCounted = todayVariable.valueOf();
 
   const UTCDate = new Date(futureCounted);
   const getHours = UTCDate.getHours();
@@ -31,7 +29,6 @@ function App() {
   const getMonth = UTCDate.getMonth();
   const getYear = UTCDate.getFullYear();
   const futureDate = `${monthFunct(getMonth)}/${dayFunct(getDay)}/${getYear} ${hourFunct(getHours)}:${minuteFunct(getMinutes)}:${secFunct(getSeconds)}`;
-  // console.log(futureDate);
 
   const UTCNowDate = new Date;
   const getNowHours = UTCNowDate.getHours();
@@ -40,74 +37,79 @@ function App() {
   const getNowDay = UTCNowDate.getDate();
   const getNowMonth = UTCNowDate.getMonth();
   const getNowYear = UTCNowDate.getFullYear();
-  // eslint-disable-next-line no-unused-vars
   const nowDate = `${monthFunct(getNowMonth)}/${dayFunct(getNowDay)}/${getNowYear} ${hourFunct(getNowHours)}:${minuteFunct(getNowMinutes)}:${secFunct(getNowSeconds)}`;
 
   const sevenDaysCount = 604800000;
   let examTimeLimit = (futureCounted - timeTodayCounted)/1000;
+  // console.log(`Exam Time Limit: ${examTimeLimit}, Future Counted: ${futureCounted}, Deadline Variable: ${deadlineVariable}, Today Variable: ${todayVariable}, Today Counted: ${timeTodayCounted}`);
 
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
-  // const [dateTestBtn, setDateTestbtn] = useState(customDate);
+  const apiUrlProd = "https://publishitingath.netlify.app/.netlify/functions/api/countdown";
+  // const apiUrlDev = "http://localhost:3001/countdown";
+  const fetchTimeout = 3000;
 
-
-  // This creates a new collection in the firestore
-  // const customDateRef = collection(db, "Current-Date");
 
 
   const fetchDateData = async () => {
     try {
-      const getDateRef = doc(db, "Current-Date", "date_document");
-      const dateSnap = await getDoc(getDateRef);
-
-      if (dateSnap.exists()) {
-        console.log("Document data:", dateSnap.data().Date);
-        setCustomDate(dateSnap.data.Date);
+      const dateFetch = await axios.get(apiUrlProd);
+      if (dateFetch.data.date === "" 
+        || dateFetch.data.date === null 
+        || dateFetch.data.date === undefined 
+        || dateFetch.data.date === "Invalid date") {
+        setDB_SavedDate(()=>nowDate);
+        console.log("Polling...");
+        setTimeout(() => {fetchDateData()}, fetchTimeout);
+      } else if (dateFetch.data.date !== "" 
+        && dateFetch.data.date !== null 
+        && dateFetch.data.date !== undefined 
+        && dateFetch.data.date !== "Invalid date") {
+        console.log("Document data:", dateFetch.data.date);
+        setDB_SavedDate(()=>dateFetch.data.date);
         console.log("Success fetching Date...");
-        setDateLoaded(true);
-      } else {
-        // docSnap.data() will be undefined in this case
-        console.log("No available Date!");
+        setIsFetched(true);
       }
     } catch (error) {
       console.log("Error fetching Date...");
     }
   }
 
-  // const handleDateBtn = async () => {
-  //   try {
-  //     await updateDoc(doc(customDateRef, "date_document"), { Date: nowDate });
-  //     setDateTestbtn(nowDate);
-  //     console.log("Success updating Date");
-  //   } catch (err) {
-  //     console.log("Error updating Date");
-  //   }
-  // }
 
-
+  // eslint-disable-next-line no-unused-vars
   const updateDateFunction = async () => {
     try {
-      if (examTimeLimit < 2 && examTimeLimit > -2) {
-        setFutureCounted((prev) => prev + sevenDaysCount);
-        setCustomDate(() => futureDate);
-        await setDoc(doc(db, "Current-Date", "date_document"), { Date: futureDate });
-        console.log("Updated Date successfully...");
-      }
+      futureCounted = futureCounted + sevenDaysCount;
+      const updatedFetchedDate = new Date(futureCounted);
+      const getHours = updatedFetchedDate.getHours();
+      const getMinutes = updatedFetchedDate.getMinutes();
+      const getSeconds = updatedFetchedDate.getSeconds();
+      const getDay = updatedFetchedDate.getDate();
+      const getMonth = updatedFetchedDate.getMonth();
+      const getYear = updatedFetchedDate.getFullYear();
+      const updatedFetchedDateFormatted = `${monthFunct(getMonth)}/${dayFunct(getDay)}/${getYear} ${hourFunct(getHours)}:${minuteFunct(getMinutes)}:${secFunct(getSeconds)}`;
+      const updateDateRes = await axios.post(apiUrlProd, { date: updatedFetchedDateFormatted });
+      console.log(`${updateDateRes.data.msg}`);
+      setIsFetched(false);
+      fetchDateData();
     } catch (error) {
       console.log("Error updating Current Date:", error)
     }
   }
 
-  useEffect(() => {
-    fetchDateData();
-  }, [])
-  
 
   useEffect(() => {
-    updateDateFunction();
+    if (!isFetched) {
+      fetchDateData();
+    }
+
+    if (examTimeLimit < 1) {
+      updateDateFunction();
+    }
+
     const setExamTimerInterval = setInterval(() => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       examTimeLimit = examTimeLimit - 1;
@@ -119,18 +121,19 @@ function App() {
 
     return () => clearInterval(setExamTimerInterval);
 
-  }, [examTimeLimit])
+  }, [examTimeLimit, DB_SavedDate])
 
   return (
     <>
       <mainContext.Provider 
         value={{ hours, minutes, seconds, days, futureDate, active, setActive, menuVisible, setMenuVisible, 
-        ifLandingLoaded, setIfLandingLoaded, dateLoaded, setDateLoaded }}>
+        ifLandingLoaded, setIfLandingLoaded, examTimeLimit }}>
         <BrowserRouter>
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/success" element={<SuccessPage />} />
+            <Route path="/dashboard" element={<RegBackend />} />
           </Routes>
         </BrowserRouter>
       </mainContext.Provider>
