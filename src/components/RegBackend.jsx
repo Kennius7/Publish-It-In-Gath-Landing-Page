@@ -18,7 +18,7 @@ const RegBackend = () => {
 
     useEffect(() => {
         if (!isAuthenticated) {
-            navigate("/");
+            setTimeout(() => { navigate("/") }, 3000);
         }
 
         const regDataRef = collection(db, "PIIG_Registrations");
@@ -58,9 +58,18 @@ const RegBackend = () => {
                         ? <BlankPage />
                         : <div className="flex flex-col justify-center items-center w-full">
                             <div className="flex flex-col justify-start items-center w-full h-[100dvh]">
-                                <div className="font-mono font-semibold text-[25px]">Dashboard</div>
-                                <div>Number of Applicants: {regData.length}</div>
-                                <div>List of Applicants</div>
+                                <div className="font-sans font-semibold text-[30px] tracking-[3px]">
+                                    Applicant Data List
+                                </div>
+                                <div className="flex justify-center items-center w-full">
+                                    <div className="font-sans font-semibold text-[24px] tracking-[4px]">
+                                        List of Applicants
+                                    </div>
+                                    <div className="font-sans font-semibold text-[20px] tracking-[2px]">
+                                        ( Number of Applicants: {regData.length} )
+                                    </div>
+                                </div>
+                                <hr className="w-[70%] border-[2px] border-red-400 mb-[20px] mt-[10px]"/>
 
                                 <table className="sm:w-[95%] xs:w-[98%] w-[99%] min-h-[100px] 
                                     bg-slate-100 rounded-[7px]">
@@ -121,7 +130,7 @@ const RegBackend = () => {
                                                         xs:text-[11px] text-[9px] w-[80%]">
                                                             {
                                                                 reg.createdAt.toDate().toLocaleTimeString() 
-                                                                + " " + ":" + " " +
+                                                                + " " + ":" + " " + 
                                                                 reg.createdAt.toDate().toDateString()
                                                             }
                                                         </div>

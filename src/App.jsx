@@ -14,7 +14,7 @@ function App() {
   const [menuVisible, setMenuVisible] = useState(false);
   const [ifLandingLoaded, setIfLandingLoaded] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const [DB_SavedDate, setDB_SavedDate] = useState("");
   const deadlineVariable = new Date(DB_SavedDate);

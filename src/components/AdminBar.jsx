@@ -1,14 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { mainContext } from "../context/mainContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 
 const AdminBar = () => {
     const navigate = useNavigate();
+    const { setIsAuthenticated } = useContext(mainContext);
     const [errorBtn, setErrorBtn] = useState(false);
     const [adminFormData, setAdminFormData] = useState({
         username: '',
         password: '',
     });
+    const [adminCred, setAdminCred] = useState({});
+    const [submitText, setSubmitText] = useState("Submit");
+    const apiUrlProd = "https://piig-server.netlify.app/.netlify/functions/api/passadmin";
+    // const apiUrlDev = "http://localhost:3001/passadmin";
+
+
+
+    useEffect(() => {
+        const fetchCredData = async () => {
+            try {
+                const admincredData = await axios.get(apiUrlProd);
+                console.log(admincredData);
+                setAdminCred(admincredData);
+                if (
+                    admincredData.data.data.userName.length < 1 
+                    && admincredData.data.data.userName.length < 1
+                    ) {
+                        setTimeout(() => {
+                            console.log(adminCred.data.userName);
+                            console.log("Polling...");
+                            fetchCredData();
+                    }, 10000);
+                }
+                console.log(adminCred.data.msg);
+            } catch (error) {
+                console.error(`Error fetching Credentials: ${error}`);
+            }
+        }
+        fetchCredData();
+    }, [])
 
 
     const handleChange = (e) => {
@@ -21,6 +55,12 @@ const AdminBar = () => {
     const validateForm = () => {
         if (!adminFormData.username || !adminFormData.password) {
             setErrorBtn(true);
+            setSubmitText("Error");
+            console.log("Login Failed");
+            setTimeout(() => { 
+                setSubmitText("Submit"); 
+                setErrorBtn(false) 
+            }, 6000);
             setTimeout(() => { setErrorBtn(false) }, 6000);
             return false
         } else return true
@@ -30,20 +70,26 @@ const AdminBar = () => {
         e.preventDefault();
 
         if (validateForm()) {
-            if (adminFormData.username === "shosan" && adminFormData.password === "Shosanboggs777") {
-                console.log(adminFormData);
-                console.log("Login Successful");
+            if (
+                adminFormData.username === adminCred.data.data.userName 
+                && adminFormData.password === adminCred.data.data.password
+                ) {
+                console.log(adminCred.data.msg);
                 setAdminFormData({
                     username: '',
                     password: '',
                 });
+                setIsAuthenticated(true);
                 setErrorBtn(false);
-                setTimeout(() => { navigate("/dashboard") }, 3000);
+                setTimeout(() => { navigate("/dashboard") }, 1000);
             } else {
-                console.log(adminFormData);
-                console.log("Login Failed");
+                console.log(adminCred.data.data.errMsg);
+                setSubmitText("Error");
                 setErrorBtn(true);
-                setTimeout(() => { setErrorBtn(false) }, 6000);
+                setTimeout(() => { 
+                    setSubmitText("Submit"); 
+                    setErrorBtn(false) 
+                }, 6000);
             }
         }
     }
@@ -76,9 +122,9 @@ const AdminBar = () => {
                         <button 
                             onClick={handleClick} 
                             className={`w-[31%] h-full rounded-[8px] outline-none 
-                            text-[16px] text-slate-300 focus:bg-blue-300
-                            ${errorBtn ? "bg-red-300" : "bg-slate-200"}`}>
-                            Submit
+                            text-[16px] text-slate-300
+                            ${errorBtn ? "bg-red-300" : "bg-blue-200"}`}>
+                            {submitText}
                         </button>
                     </div>
                 </div>
