@@ -226,27 +226,44 @@ function CallToAction() {
 
   return (
     <>
-        <div className="w-full relative bg-slate-200 md:h-[900px] sm:h-[800px] xs:h-[700px] h-[750px]">
+        <div className="w-full relative bg-slate-200 md:h-[1100px] sm:h-[1000px] 
+            xs:h-[900px] h-[1000px]">
             <div className="w-full h-full">
                 <img src={backgroundPics} className="w-full h-full object-cover object-bottom opacity-40" />
             </div>
 
-            <div className="flex flex-col justify-between items-center absolute z-1 xs:top-[10%] 
-                top-[6%] left-0 w-full md:h-[80%] sm:h-[75%] xs:h-[87%] h-[85%]">
-                <div className="font-sans font-semibold text-center md:text-[22px] sm:text-[18px] 
-                    xs:text-[16px] text-[15px] md:w-[55%] sm:w-[60%] xs:w-[80%] w-[95%]">
-                    The world is ever changing so fast. drifting towards the tech zeitgeist. 
-                    Position yourself now and equip yourself to compete with the greats in tech 
-                    and embrace a future filled with endless possibilities!
+            <div className="flex flex-col justify-start items-center absolute z-1 md:top-[3%] 
+                sm:top-[4%] xs:top-[3%] top-[4%] left-0 w-full md:h-full sm:h-full xs:h-full h-full">
+                <div className="flex flex-col justify-center items-center w-full">
+                    <div className="font-sans font-bold text-center text-red-800 
+                        sm:text-[30px] xs:text-[26px] text-[24px]">
+                        Please Note:
+                    </div>
+                    <hr className="w-[50%] border-[2px] border-red-900" />
+                    <div className="font-sans font-semibold italic text-center text-black 
+                        md:text-[22px] sm:text-[19px] xs:text-[17px] text-[15px] md:w-[50%] 
+                        sm:w-[70%] xs:w-[80%] w-[95%] navText2 mt-[10px] md:leading-[26px] 
+                        sm:leading-[24px] xs:leading-[20px] leading-[24px]">
+                        Ensure to fill out the form below correctly before booking as this will
+                        enable us to reach you and confirm your seat on the said day of departure 
+                        for service!
+                        <br/> <br/>
+                        This will also help with the disbursement of gifts and other benefits. 
+                        We do encourage being open to participating fully in the worship, 
+                        ministration and the word sections of service as our mission is to see 
+                        you grow body, soul, and spirit and come back with testimonies!
+                        <br/> <br/>
+                        God bless you and establish you as you come!
+                    </div>
                 </div>
 
-                <div className="flex flex-col justify-center items-center md:w-[50%] sm:w-[55%] 
-                    xs:w-[75%] w-[96%] md:h-[90%] sm:h-[90%] xs:h-[90%] h-[92%] xs:bg-slate-600/50 
-                    bg-slate-600/60 my-[30px] xs:rounded-[7px] rounded-[6px] 
+                <div className="flex flex-col justify-center items-center md:w-[50%] sm:w-[70%] 
+                    xs:w-[80%] w-[96%] md:h-[500px] sm:h-[470px] xs:h-[400px] h-[400px] 
+                    xs:bg-slate-600/50 bg-slate-600/60 my-[20px] xs:rounded-[7px] rounded-[6px] 
                     md:py-0 sm:py-4 xs:py-1 py-3">
 
                     <div className="font-poppins font-semibold text-center navText2 md:text-[30px] 
-                        sm:text-[27px] xs:text-[20px] text-[22px] md:mb-4 sm:mb-2 xs:mb-4 mb-6">
+                        sm:text-[27px] xs:text-[24px] text-[22px] md:mb-4 sm:mb-2 xs:mb-4 mb-6">
                         Book your seats
                     </div>
 
@@ -348,10 +365,11 @@ function CallToAction() {
                 </div>
 
                 <div className="font-sans font-semibold text-center italic md:text-[20px] 
-                    sm:text-[18px] xs:text-[16px] text-[14px] md:w-[40%] sm:w-[60%] xs:w-[80%] 
-                    w-[90%] sm:mt-0 mt-[20px]">
-                    Don&apos;t miss out on the opportunity to shape your destiny in the digital realm. 
-                    Join our online programming classes and become a master of code!
+                    sm:text-[18px] xs:text-[16px] text-[14px] md:w-[40%] sm:w-[60%] xs:w-[70%] 
+                    w-[80%] sm:mt-0 mt-[20px]">
+                    Don&apos;t miss out on the opportunity to shape your destiny! 
+                    To reach us you can contact us at this number: 08055549979 or at this email: 
+                    shosanacodemia@gmail.com
                 </div>
             </div>
         </div>
