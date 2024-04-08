@@ -74,6 +74,7 @@ const AdminBar = () => {
                 adminFormData.username === adminCred.data.data.userName 
                 && adminFormData.password === adminCred.data.data.password
                 ) {
+                setSubmitText("Submitting...");
                 console.log(adminCred.data.msg);
                 setAdminFormData({
                     username: '',
@@ -81,7 +82,8 @@ const AdminBar = () => {
                 });
                 setIsAuthenticated(true);
                 setErrorBtn(false);
-                setTimeout(() => { navigate("/dashboard") }, 1000);
+                setTimeout(() => { setSubmitText("Success") }, 2000);
+                setTimeout(() => { navigate("/dashboard") }, 4000);
             } else {
                 console.log(adminCred.data.data.errMsg);
                 setSubmitText("Error");
@@ -97,32 +99,39 @@ const AdminBar = () => {
 
     return (
         <>
-            <div className="flex flex-col justify-center items-end w-full bg-slate-200">
-                <div className="flex flex-col justify-center items-start sm:w-[30%] w-full">
-                    <div className="mr-[10px] text-slate-300">
-                        Admin:
+            <div className="flex flex-col justify-center items-center md:w-[30%] sm:w-[40%] 
+                xs:w-[60%] w-[90%] md:h-[200px] sm:h-[190px] xs:h-[180px] h-[150px] 
+                bg-slate-700/95 rounded-[12px]">
+                <div className="flex flex-col justify-around items-center w-full h-[95%]">
+                    <div className="text-slate-300 md:w-[90%] w-[85%] md:text-[16px] text-[13px]">
+                        Admin Section:
                     </div>
-                    <div className="flex justify-between items-center w-full h-[30px]">
+                    <div className="flex flex-col justify-around items-center w-full h-[80%]">
                         <input 
                             type="text" 
                             name="username"
                             placeholder="Username"
                             value={adminFormData.username}
                             onChange={handleChange}
-                            className="w-[31%] rounded-[8px] h-full bg-slate-200 
-                            outline-none placeholder:text-slate-300" />
+                            className="md:w-[90%] w-[85%] sm:h-[29%] xs:h-[25%] h-[23%] 
+                            rounded-[8px] bg-slate-200 outline-none 
+                            placeholder:text-slate-600/70 placeholder:italic 
+                            placeholder:font-sans pl-[10px] md:text-[16px] text-[13px]" />
                         <input 
                             type="password" 
                             name="password"
                             placeholder="Password"
                             value={adminFormData.password}
                             onChange={handleChange}
-                            className="w-[31%] rounded-[8px] h-full bg-slate-200 
-                            outline-none placeholder:text-slate-300" />
+                            className="md:w-[90%] w-[85%] sm:h-[29%] xs:h-[25%] h-[23%] 
+                            rounded-[8px] bg-slate-200 outline-none 
+                            placeholder:text-slate-600/70 placeholder:italic 
+                            placeholder:font-sans pl-[10px] md:text-[16px] text-[13px]" />
                         <button 
                             onClick={handleClick} 
-                            className={`w-[31%] h-full rounded-[8px] outline-none 
-                            text-[16px] text-slate-300
+                            className={`font-sans md:w-[50%] w-[40%] sm:h-[20%] xs:h-[24%] h-[25%] 
+                            rounded-[8px] outline-none sm:text-[16px] text-[14px] 
+                            text-slate-600 italic
                             ${errorBtn ? "bg-red-300" : "bg-blue-200"}`}>
                             {submitText}
                         </button>

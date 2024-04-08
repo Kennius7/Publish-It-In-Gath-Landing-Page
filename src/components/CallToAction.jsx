@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { mainContext } from "../context/mainContext";
 // import { useNavigate } from "react-router-dom";
 import { Timestamp, addDoc, collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from "../../FirebaseConfig";
@@ -7,6 +8,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { AdminBar } from "./index";
 
 
 
@@ -23,6 +25,8 @@ function CallToAction() {
     const [PIIGData, setPIIGData] = useState([]);
     const [errorNumUI, setErrorNumUI] = useState(false);
     const [errorNameUI, setErrorNameUI] = useState(false);
+    const [adminBtnText, setAdminBtnText] = useState("Admin Enter");
+    const { isAdminClicked, setIsAdminClicked } = useContext(mainContext);
     const numberRegex = /[0-9]/;
     const fullNameRegex = /\s/;
     const apiUrlProd = "https://piig-server.netlify.app/.netlify/functions/api/send-email";
@@ -221,6 +225,13 @@ function CallToAction() {
         }
     }
 
+    const handleAdminClick = () => {
+        setIsAdminClicked(!isAdminClicked);
+        if (isAdminClicked) {
+            setAdminBtnText("Clicked");
+        } else setAdminBtnText("Admin Enter");
+    }
+
 
 
 
@@ -233,7 +244,7 @@ function CallToAction() {
             </div>
 
             <div className="flex flex-col justify-start items-center absolute z-1 md:top-[3%] 
-                sm:top-[4%] xs:top-[3%] top-[4%] left-0 w-full md:h-full sm:h-full xs:h-full h-full">
+                sm:top-[4%] xs:top-[3%] top-[4%] left-0 w-full h-full">
                 <div className="flex flex-col justify-center items-center w-full">
                     <div className="font-sans font-bold text-center text-red-800 
                         sm:text-[30px] xs:text-[26px] text-[24px]">
@@ -370,6 +381,22 @@ function CallToAction() {
                     Don&apos;t miss out on the opportunity to shape your destiny! 
                     To reach us you can contact us at this number: 08055549979 or at this email: 
                     shosanacodemia@gmail.com
+                </div>
+                <div className="relative flex justify-center items-center w-full sm:mt-[80px] 
+                xs:mt-[50px] mt-[60px]">
+                    <button
+                        onClick={handleAdminClick}
+                        className="font-sans bg-blue-300/40 text-slate-600/20 
+                        md:text-[14px] sm:text-[12px] xs:text-[10px] mb-[40px]
+                        text-[8px] rounded-[12px] duration-1000 px-[20px] py-[3px]">
+                        {adminBtnText}
+                    </button>
+                    <div 
+                        className={`absolute z-3 w-full md:bottom-[100%] bottom-[120%] flex 
+                        justify-center items-center
+                        ${!isAdminClicked ? "hidden" : "block"}`}>
+                        <AdminBar/>
+                    </div>
                 </div>
             </div>
         </div>

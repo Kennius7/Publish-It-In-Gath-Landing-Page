@@ -12,9 +12,10 @@ function App() {
 
   const [active, setActive] = useState("Home");
   const [menuVisible, setMenuVisible] = useState(false);
-  const [ifLandingLoaded, setIfLandingLoaded] = useState(false);
+  // const [ifLandingLoaded, setIfLandingLoaded] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAdminClicked, setIsAdminClicked] = useState(false);
 
   const [DB_SavedDate, setDB_SavedDate] = useState("");
   const deadlineVariable = new Date(DB_SavedDate);
@@ -127,8 +128,9 @@ function App() {
   return (
     <>
       <mainContext.Provider 
-        value={{ hours, minutes, seconds, days, futureDate, active, setActive, menuVisible, setMenuVisible, 
-        ifLandingLoaded, setIfLandingLoaded, examTimeLimit, isAuthenticated, setIsAuthenticated }}>
+        value={{ hours, minutes, seconds, days, futureDate, active, setActive, 
+          menuVisible, setMenuVisible, isAdminClicked, setIsAdminClicked, 
+          examTimeLimit, isAuthenticated, setIsAuthenticated }}>
         <BrowserRouter>
           <ScrollToTop />
           <Routes>

@@ -1,4 +1,4 @@
-import { Home, Intro, SundayExpectation, CallToAction, AdminBar } from "./index";
+import { Home, Intro, SundayExpectation, CallToAction } from "./index";
 
 
 function LandingPage() {
@@ -10,7 +10,6 @@ function LandingPage() {
         <Intro/>
         <SundayExpectation/>
         <CallToAction/>
-        <AdminBar/>
       </div>
     </>
   )
